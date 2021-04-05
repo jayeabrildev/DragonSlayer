@@ -88,6 +88,7 @@ export class DSPlayGame extends Component {
       totalCoins: 0,
       scoreBoard: false,
       click: 1,
+      dragonHP: 1000000,
     };
   }
   componentDidMount() {
@@ -156,6 +157,7 @@ export class DSPlayGame extends Component {
         score1: randomScore1,
         screenScore: randomScore1 + '!',
         totalScore: this.state.totalScore + randomScore1,
+
         showDice1: require('../Assets/Images/dice1empty.png'),
       });
     }, 1400);
@@ -183,6 +185,7 @@ export class DSPlayGame extends Component {
   secondAttact = () => {
     spineffect.stop();
     spineffect.play();
+
     this.setState({
       disabled: true,
       sword: require('../Assets/Images/attackbuttonclicked.png'),
@@ -232,6 +235,7 @@ export class DSPlayGame extends Component {
   thirdAttact = () => {
     spineffect.stop();
     spineffect.play();
+
     this.setState({
       disabled: true,
       sword: require('../Assets/Images/attackbuttonclicked.png'),
@@ -358,9 +362,9 @@ export class DSPlayGame extends Component {
   };
 
   render() {
+    // Play background music
     bgsound.play();
     bgsound.setNumberOfLoops(20);
-    //=======================================================
 
     const rotateDice1 = this.state.dice1anim1.interpolate({
       inputRange: [0, 1],
@@ -482,7 +486,7 @@ export class DSPlayGame extends Component {
                     <View style={styles.modalScoreNum}>
                       <Text
                         style={[styles.modalScoreText, styles.modalScoreText2]}>
-                        {this.state.totalScore}
+                        {this.state.dragonHP}
                       </Text>
                     </View>
                     <View style={styles.modalButtonSpace}>
