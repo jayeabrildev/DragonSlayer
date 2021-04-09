@@ -21,11 +21,12 @@ import spin from '../Assets/Audio/sfx_rolldice.mp3';
 import dspg from '../Assets/Audio/bgmusic_gameplay.mp3';
 import Scoreboard from '../Components/scoreboard';
 import slsh from '../Assets/Audio/sfx_slash.mp3';
+import Treasurebox from '../Components/treasurebox';
+import {RevealFromBottomAndroidSpec} from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/TransitionSpecs';
 
 Sound.setCategory('Playback');
 
 // Variables
-
 var bgsound = new Sound(dspg, Sound.MAIN_BUNDLE, error => {
   if (error) {
     console.log('failed to load the sound', error);
@@ -38,7 +39,6 @@ var bgsound = new Sound(dspg, Sound.MAIN_BUNDLE, error => {
       bgsound.getNumberOfChannels(),
   );
 });
-
 var spineffect = new Sound(spin, Sound.MAIN_BUNDLE, error => {
   if (error) {
     console.log('failed to load the sound', error);
@@ -51,7 +51,6 @@ var spineffect = new Sound(spin, Sound.MAIN_BUNDLE, error => {
       bgsound.getNumberOfChannels(),
   );
 });
-
 var slash = new Sound(slsh, Sound.MAIN_BUNDLE, error => {
   if (error) {
     console.log('failed to load the sound', error);
@@ -80,10 +79,36 @@ export class DSPlayGame extends Component {
   };
 
   constructor() {
+    // Functions
+    getRandomDragon = () => {
+      let randomDragon = Math.floor(Math.random() * 3) + 1;
+      return randomDragon;
+    };
+
+    getDragonImage = dragonRandom => {
+      switch (dragonRandom) {
+        case 1:
+          return require('../Assets/Images/dragon1.gif');
+          break;
+        case 2:
+          return require('../Assets/Images/dragon2.gif');
+          break;
+        case 3:
+          return require('../Assets/Images/dragon3.gif');
+          break;
+      }
+    };
+
+    getRandomScore = () => {
+      let randomScore = Math.floor(Math.random() * 16) + 85;
+      return randomScore;
+    };
+
+    var randomDragon = getRandomDragon();
     super();
     this.state = {
-      dragoncount: this.getRandomDragon(),
-      dragon: this.getDragonImage(this.getRandomDragon()),
+      dragoncount: randomDragon,
+      dragon: getDragonImage(randomDragon),
       disabled: false,
       dice1anim1: new Animated.Value(0),
       dice1anim2: new Animated.ValueXY({x: 0, y: 0}),
@@ -107,76 +132,27 @@ export class DSPlayGame extends Component {
       coins: 0,
       totalCoins: 0,
       scoreBoard: false,
+      treasureBox: false,
       click: 1,
       dragonHP: 1000000,
     };
   }
 
-  // Constants
-
-  getRandomDragon = () => {
-    let randomDragon = Math.floor(Math.random() * 3) + 1;
-    return randomDragon;
-  };
-
-  getDragonImage = dragonRandom => {
-    switch (dragonRandom) {
-      case 1:
-        return require('../Assets/Images/dragon1.gif');
-        break;
-      case 2:
-        return require('../Assets/Images/dragon2.gif');
-        break;
-      case 3:
-        return require('../Assets/Images/dragon3.gif');
-        break;
-      default:
-        return require('../Assets/Images/dragon1.gif');
-        break;
-    }
-  };
-
-  getRandomScore = () => {
-    let randomScore = Math.floor(Math.random() * 16) + 85;
-    return randomScore;
-  };
-
-  attactDragon = () => {
-    console.log(this.state.dragoncount);
-
-    if (this.state.dragoncount == 1) {
-      setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon1.gif')});
-        slash.play();
-      }, 2500);
-      setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon1.gif')});
-      }, 3000);
-    } else if (this.state.dragoncount == 2) {
-      setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon2.gif')});
-        slash.play();
-        console.log('Attack');
-      }, 2500);
-      setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon2.gif')});
-      }, 3000);
-    } else if (this.state.dragoncount == 3) {
-      setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon3.gif')});
-        slash.play();
-        console.log('Attack');
-      }, 2500);
-      setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon3.gif')});
-      }, 3000);
-    }
-  };
-
-  //----------------------------------------------------------------------------------------------------
+  // First attack
   firstAttact = () => {
     spineffect.stop();
     spineffect.play();
+
+    // Generate random score
+    const randomScore1 = getRandomScore();
+
+    // Compute score, deduct hp
+    this.setState({
+      score1: randomScore1,
+      screenScore: randomScore1 + '!',
+      totalScore: this.state.totalScore + randomScore1,
+      dragonHP: this.state.dragonHP - this.state.totalScore,
+    });
     this.setState({
       disabled: true,
       sword: require('../Assets/Images/attackbuttonclicked.png'),
@@ -193,14 +169,8 @@ export class DSPlayGame extends Component {
       this.state.dice3anim2,
     );
 
-    const randomScore1 = this.getRandomScore();
-
     setTimeout(() => {
       this.setState({
-        score1: randomScore1,
-        screenScore: randomScore1 + '!',
-        totalScore: this.state.totalScore + randomScore1,
-
         showDice1: require('../Assets/Images/dice1empty.png'),
       });
     }, 1400);
@@ -217,8 +187,6 @@ export class DSPlayGame extends Component {
     this.setState({dice2anim2: new Animated.ValueXY({x: 0, y: 0})});
 
     // Dragon Slash Effect
-    console.log(this.state.dragoncount);
-
     if (this.state.dragoncount == 1) {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon1.gif')});
@@ -231,7 +199,6 @@ export class DSPlayGame extends Component {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon2.gif')});
         slash.play();
-        console.log('Attack');
       }, 2500);
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/dragon2.gif')});
@@ -240,7 +207,6 @@ export class DSPlayGame extends Component {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon3.gif')});
         slash.play();
-        console.log('Attack');
       }, 2500);
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/dragon3.gif')});
@@ -254,11 +220,20 @@ export class DSPlayGame extends Component {
       });
     }, 3000);
   };
-
-  //----------------------------------------------------------------------------------------------------
+  // Second Attack
   secondAttact = () => {
     spineffect.stop();
     spineffect.play();
+
+    const randomScore2 = getRandomScore();
+
+    //Compute score and deduct hp
+    this.setState({
+      score2: randomScore2,
+      screenScore: randomScore2 + '!',
+      totalScore: this.state.totalScore * randomScore2,
+      dragonHP: this.state.dragonHP - this.state.totalScore,
+    });
 
     this.setState({
       disabled: true,
@@ -278,16 +253,12 @@ export class DSPlayGame extends Component {
       this.state.dice3anim2,
     );
 
-    const randomScore2 = this.getRandomScore();
-
     setTimeout(() => {
       this.setState({
-        score2: randomScore2,
-        screenScore: randomScore2 + '!',
-        totalScore: this.state.totalScore * randomScore2,
         showDice2: require('../Assets/Images/dice2empty.png'),
       });
     }, 1400);
+
     setTimeout(() => {
       this.setState({showExplosion: require('../Assets/Images/explosion.gif')});
     }, 1200);
@@ -296,10 +267,8 @@ export class DSPlayGame extends Component {
       this.setState({screenScore: '', showExplosion: null});
     }, 2200);
 
-    const slashdragon = this.state.dragoncount;
     // Dragon Slash Effect
-    console.log(this.state.dragoncount);
-
+    console.log('Dragon: ' + this.state.dragoncount);
     if (this.state.dragoncount == 1) {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon1.gif')});
@@ -312,7 +281,6 @@ export class DSPlayGame extends Component {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon2.gif')});
         slash.play();
-        console.log('Attack');
       }, 2500);
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/dragon2.gif')});
@@ -321,7 +289,6 @@ export class DSPlayGame extends Component {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon3.gif')});
         slash.play();
-        console.log('Attack');
       }, 2500);
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/dragon3.gif')});
@@ -344,10 +311,20 @@ export class DSPlayGame extends Component {
       });
     }, 3000);
   };
-  //----------------------------------------------------------------------------------------------------
+  // Third Attack
   thirdAttact = () => {
     spineffect.stop();
     spineffect.play();
+
+    const randomScore3 = getRandomScore();
+
+    //Compute score and deduct hp
+    this.setState({
+      score3: randomScore3,
+      screenScore: randomScore3 + '!',
+      totalScore: this.state.totalScore * randomScore3,
+      dragonHP: this.state.dragonHP - this.state.totalScore,
+    });
 
     this.setState({
       disabled: true,
@@ -366,16 +343,12 @@ export class DSPlayGame extends Component {
       this.state.dice3anim2,
     );
 
-    const randomScore3 = this.getRandomScore();
-
     setTimeout(() => {
       this.setState({showExplosion: require('../Assets/Images/explosion.gif')});
     }, 1200);
+
     setTimeout(() => {
       this.setState({
-        score3: randomScore3,
-        screenScore: randomScore3 + '!',
-        totalScore: this.state.totalScore * randomScore3,
         showDice3: require('../Assets/Images/dice3empty.png'),
       });
     }, 1400);
@@ -389,9 +362,9 @@ export class DSPlayGame extends Component {
     }, 2200);
 
     const slashdragon = this.state.dragoncount;
-    // Dragon Slash Effect
-    console.log(this.state.dragoncount);
 
+    // Dragon Slash Effect
+    console.log('Dragon: ' + this.state.dragoncount);
     if (this.state.dragoncount == 1) {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon1.gif')});
@@ -404,7 +377,6 @@ export class DSPlayGame extends Component {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon2.gif')});
         slash.play();
-        console.log('Attack');
       }, 2500);
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/dragon2.gif')});
@@ -413,19 +385,11 @@ export class DSPlayGame extends Component {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon3.gif')});
         slash.play();
-        console.log('Attack');
       }, 2500);
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/dragon3.gif')});
       }, 3000);
     }
-
-    setTimeout(() => {
-      this.setState({
-        disabled: false,
-        sword: require('../Assets/Images/attackbutton.png'),
-      });
-    }, 3000);
     setTimeout(() => {
       this.setState({
         disabled: false,
@@ -486,9 +450,10 @@ export class DSPlayGame extends Component {
   };
 
   playAgain = () => {
+    var randomDragon = getRandomDragon();
     this.setState({
-      dragon: this.getDragonImage(this.getRandomDragon()),
-
+      dragoncount: randomDragon,
+      dragon: getDragonImage(randomDragon),
       disabled: false,
       dice1anim1: new Animated.Value(0),
       dice1anim2: new Animated.ValueXY({x: 0, y: 0}),
