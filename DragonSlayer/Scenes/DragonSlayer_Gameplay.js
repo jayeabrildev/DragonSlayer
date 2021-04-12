@@ -7,7 +7,6 @@ import {
   Image,
   Animated,
   TouchableOpacity,
-  Modal,
   BackHandler,
 } from 'react-native';
 import {interpolate} from 'react-native-reanimated';
@@ -16,13 +15,15 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Sound from 'react-native-sound';
-
 import spin from '../Assets/Audio/sfx_rolldice.mp3';
 import dspg from '../Assets/Audio/bgmusic_gameplay.mp3';
-import Scoreboard from '../Components/scoreboard';
 import slsh from '../Assets/Audio/sfx_slash.mp3';
-import Treasurebox from '../Components/treasurebox';
-import {RevealFromBottomAndroidSpec} from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/TransitionSpecs';
+
+// Imported Components
+import TopNavigation from '../Components/topnavigation';
+import DragonGIF from '../Components/dragon';
+import Scoreboard from '../Components/scoreboard';
+import Dice from '../Components/dice';
 
 Sound.setCategory('Playback');
 
@@ -73,7 +74,7 @@ export class DSPlayGame extends Component {
   }
   onBackPress = () => {
     {
-      this.props.navigation.navigate('HomeScreen') + bgsound.stop();
+      this.navigation.navigate('HomeScreen') + bgsound.stop();
     }
     return true;
   };
@@ -129,37 +130,40 @@ export class DSPlayGame extends Component {
       showExplosion: null,
       sword: require('../Assets/Images/attackbutton.png'),
       totalScore: 0,
+      roundCoins: 0,
       coins: 0,
       totalCoins: 0,
       scoreBoard: false,
       treasureBox: false,
       click: 1,
-      dragonHP: 1000000,
+      hpbar: require('../Assets/Images/dragonhp_1.png'),
     };
   }
 
   // First attack
   firstAttact = () => {
     spineffect.stop();
+
+    // Play Spin Sound Effect
     spineffect.play();
 
     // Generate random score
     const randomScore1 = getRandomScore();
 
-    // Compute score, deduct hp
-    this.setState({
-      score1: randomScore1,
-      screenScore: randomScore1 + '!',
-      totalScore: this.state.totalScore + randomScore1,
-      dragonHP: this.state.dragonHP - this.state.totalScore,
-    });
+    // Disable Attack Button temporarily
     this.setState({
       disabled: true,
       sword: require('../Assets/Images/attackbuttonclicked.png'),
     });
 
-    const Animations = require('./DragonSlayer_Animation');
+    // Save Score
+    this.setState({
+      score1: randomScore1,
+      totalScore: this.state.totalScore + randomScore1,
+    });
 
+    // Animate the Dice
+    const Animations = require('./DragonSlayer_Animation');
     Animations.diceAnim(
       this.state.dice1anim1,
       this.state.dice1anim2,
@@ -168,6 +172,9 @@ export class DSPlayGame extends Component {
       this.state.dice3anim1,
       this.state.dice3anim2,
     );
+
+    this.setState({dice2anim1: new Animated.Value(0)});
+    this.setState({dice2anim2: new Animated.ValueXY({x: 0, y: 0})});
 
     setTimeout(() => {
       this.setState({
@@ -175,16 +182,18 @@ export class DSPlayGame extends Component {
       });
     }, 1400);
 
+    // Animate Explosion and Show score after 1 second
     setTimeout(() => {
-      this.setState({showExplosion: require('../Assets/Images/explosion.gif')});
-    }, 1200);
+      this.setState({
+        showExplosion: require('../Assets/Images/explosion.gif'),
+        screenScore: randomScore1 + '!',
+      });
+    }, 1000);
 
+    // Hide score and explosion after 2 seconds
     setTimeout(() => {
       this.setState({screenScore: '', showExplosion: null});
-    }, 2200);
-
-    this.setState({dice2anim1: new Animated.Value(0)});
-    this.setState({dice2anim2: new Animated.ValueXY({x: 0, y: 0})});
+    }, 2000);
 
     // Dragon Slash Effect
     if (this.state.dragoncount == 1) {
@@ -213,37 +222,40 @@ export class DSPlayGame extends Component {
       }, 3000);
     }
 
+    // Enable Attack Button & Update Dragon HP after 3 seconds
     setTimeout(() => {
       this.setState({
         disabled: false,
         sword: require('../Assets/Images/attackbutton.png'),
+        hpbar: require('../Assets/Images/dragonhp_2.png'),
       });
     }, 3000);
   };
+
   // Second Attack
   secondAttact = () => {
     spineffect.stop();
+
+    // Play Spin Sound Effect
     spineffect.play();
 
+    // Generate random score
     const randomScore2 = getRandomScore();
 
-    //Compute score and deduct hp
-    this.setState({
-      score2: randomScore2,
-      screenScore: randomScore2 + '!',
-      totalScore: this.state.totalScore * randomScore2,
-      dragonHP: this.state.dragonHP - this.state.totalScore,
-    });
-
+    // Disable Attack Button temporarily
     this.setState({
       disabled: true,
       sword: require('../Assets/Images/attackbuttonclicked.png'),
     });
 
-    this.setState({showDice2: require('../Assets/Images/dice2empty.png')});
+    // Save Score
+    this.setState({
+      score2: randomScore2,
+      totalScore: this.state.totalScore * randomScore2,
+    });
 
+    // Animate the Dice
     const Animations = require('./DragonSlayer_Animation.js');
-
     Animations.diceAnim(
       this.state.dice1anim1,
       this.state.dice1anim2,
@@ -252,6 +264,11 @@ export class DSPlayGame extends Component {
       this.state.dice3anim1,
       this.state.dice3anim2,
     );
+
+    this.setState({dice3anim1: new Animated.Value(0)});
+    this.setState({dice3anim2: new Animated.ValueXY({x: 0, y: 0})});
+
+    this.setState({showDice2: require('../Assets/Images/dice2empty.png')});
 
     setTimeout(() => {
       this.setState({
@@ -259,16 +276,20 @@ export class DSPlayGame extends Component {
       });
     }, 1400);
 
+    // Animate Explosion and Show score after 1 second
     setTimeout(() => {
-      this.setState({showExplosion: require('../Assets/Images/explosion.gif')});
-    }, 1200);
+      this.setState({
+        showExplosion: require('../Assets/Images/explosion.gif'),
+        screenScore: randomScore2 + '!',
+      });
+    }, 1000);
 
+    // Hide score and explosion after 2 seconds
     setTimeout(() => {
       this.setState({screenScore: '', showExplosion: null});
-    }, 2200);
+    }, 2000);
 
     // Dragon Slash Effect
-    console.log('Dragon: ' + this.state.dragoncount);
     if (this.state.dragoncount == 1) {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/slash_dragon1.gif')});
@@ -295,44 +316,38 @@ export class DSPlayGame extends Component {
       }, 3000);
     }
 
+    // Enable Attack Button & Update Dragon HP after 3 seconds
     setTimeout(() => {
       this.setState({
         disabled: false,
         sword: require('../Assets/Images/attackbutton.png'),
-      });
-    }, 3000);
-
-    this.setState({dice3anim1: new Animated.Value(0)});
-    this.setState({dice3anim2: new Animated.ValueXY({x: 0, y: 0})});
-    setTimeout(() => {
-      this.setState({
-        disabled: false,
-        sword: require('../Assets/Images/attackbutton.png'),
+        hpbar: require('../Assets/Images/dragonhp_3.png'),
       });
     }, 3000);
   };
   // Third Attack
   thirdAttact = () => {
     spineffect.stop();
+
+    // Play Spin Sound Effect
     spineffect.play();
 
+    // Generate random score
     const randomScore3 = getRandomScore();
 
-    //Compute score and deduct hp
-    this.setState({
-      score3: randomScore3,
-      screenScore: randomScore3 + '!',
-      totalScore: this.state.totalScore * randomScore3,
-      dragonHP: this.state.dragonHP - this.state.totalScore,
-    });
-
+    // Disable Attack Button
     this.setState({
       disabled: true,
       sword: require('../Assets/Images/attackbuttonclicked.png'),
     });
 
-    this.setState({showDice3: require('../Assets/Images/dice3empty.png')});
+    // Save Score
+    this.setState({
+      score3: randomScore3,
+      totalScore: this.state.totalScore * randomScore3,
+    });
 
+    // Animate the Dice
     const Animations = require('./DragonSlayer_Animation.js');
     Animations.diceAnim(
       this.state.dice1anim1,
@@ -343,31 +358,28 @@ export class DSPlayGame extends Component {
       this.state.dice3anim2,
     );
 
-    setTimeout(() => {
-      this.setState({showExplosion: require('../Assets/Images/explosion.gif')});
-    }, 1200);
+    this.setState({showDice3: require('../Assets/Images/dice3empty.png')});
 
+    // Animate Explosion and Show score after 1 second
     setTimeout(() => {
       this.setState({
-        showDice3: require('../Assets/Images/dice3empty.png'),
+        showExplosion: require('../Assets/Images/explosion.gif'),
+        screenScore: randomScore3 + '!',
       });
-    }, 1400);
+    }, 1000);
 
-    setTimeout(() => {
-      this.setState({showExplosion: require('../Assets/Images/explosion.gif')});
-    }, 1200);
-
+    // Hide score and explosion after 2 seconds
     setTimeout(() => {
       this.setState({screenScore: '', showExplosion: null});
-    }, 2200);
-
-    const slashdragon = this.state.dragoncount;
+    }, 2000);
 
     // Dragon Slash Effect
-    console.log('Dragon: ' + this.state.dragoncount);
     if (this.state.dragoncount == 1) {
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon1.gif')});
+        this.setState({
+          dragon: require('../Assets/Images/slash_dragon1.gif'),
+          hpbar: require('../Assets/Images/dragonhp_4.png'),
+        });
         slash.play();
       }, 2500);
       setTimeout(() => {
@@ -375,7 +387,10 @@ export class DSPlayGame extends Component {
       }, 3000);
     } else if (this.state.dragoncount == 2) {
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon2.gif')});
+        this.setState({
+          dragon: require('../Assets/Images/slash_dragon2.gif'),
+          hpbar: require('../Assets/Images/dragonhp_4.png'),
+        });
         slash.play();
       }, 2500);
       setTimeout(() => {
@@ -383,20 +398,18 @@ export class DSPlayGame extends Component {
       }, 3000);
     } else if (this.state.dragoncount == 3) {
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon3.gif')});
+        this.setState({
+          dragon: require('../Assets/Images/slash_dragon3.gif'),
+          hpbar: require('../Assets/Images/dragonhp_4.png'),
+        });
         slash.play();
       }, 2500);
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/dragon3.gif')});
       }, 3000);
     }
-    setTimeout(() => {
-      this.setState({
-        disabled: false,
-        sword: require('../Assets/Images/attackbutton.png'),
-      });
-    }, 3000);
 
+    // Compute Coin Rewards based on total points
     setTimeout(() => {
       if (this.state.totalScore >= 650000 && this.state.totalScore <= 699999) {
         this.state.coins = this.state.totalCoins + 10;
@@ -431,11 +444,14 @@ export class DSPlayGame extends Component {
       this.state.coins = this.state.totalCoins + this.state.coins;
     }, 2000);
 
+    // Show Scoreboard after 4 seconds
     setTimeout(() => {
       this.setState({scoreBoard: true, totalCoins: this.state.coins});
     }, 4000);
   };
 
+  // Function called when attack button is pressed, identifies what is the current attack sequence
+  // Then calls the appropriate function
   startAnimation = () => {
     if (this.state.click == 1) {
       this.firstAttact();
@@ -449,6 +465,7 @@ export class DSPlayGame extends Component {
     }
   };
 
+  // Function for resetting the state of components / variables
   playAgain = () => {
     var randomDragon = getRandomDragon();
     this.setState({
@@ -475,11 +492,13 @@ export class DSPlayGame extends Component {
       sword: require('../Assets/Images/attackbutton.png'),
       totalScore: 0,
       scoreBoard: false,
+      hpbar: require('../Assets/Images/dragonhp_1.png'),
     });
   };
 
   render() {
     // Play background music
+    bgsound.setVolume(50);
     bgsound.play();
     bgsound.setNumberOfLoops(20);
 
@@ -501,9 +520,7 @@ export class DSPlayGame extends Component {
         {translateY: this.state.dice1Line.y},
       ],
     };
-
     //=======================================================
-
     const rotateDice2 = this.state.dice2anim1.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '3960deg'],
@@ -515,21 +532,17 @@ export class DSPlayGame extends Component {
         {translateY: this.state.dice2anim2.y},
       ],
     };
-
     const diceLinePlace2 = {
       transform: [
         {translateX: this.state.dice2Line.x},
         {translateY: this.state.dice2Line.y},
       ],
     };
-
     //=======================================================
-
     const rotateDice3 = this.state.dice3anim1.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '3960deg'],
     });
-
     const animatedStyle3 = {
       transform: [
         {rotate: rotateDice3},
@@ -537,7 +550,6 @@ export class DSPlayGame extends Component {
         {translateY: this.state.dice3anim2.y},
       ],
     };
-
     const diceLinePlace3 = {
       transform: [
         {translateX: this.state.dice3Line.x},
@@ -548,7 +560,7 @@ export class DSPlayGame extends Component {
     const navigation = this.props.navigation;
     return (
       <ImageBackground
-        source={require('../Assets/Images/bgplay.png')}
+        source={require('../Assets/Images/bg_default.png')}
         style={styles.backgroundImage}>
         <View style={styles.container}>
           {/* Scoreboard (Modal) */}
@@ -562,31 +574,21 @@ export class DSPlayGame extends Component {
             dice2={this.state.showDice2}
             dice3={this.state.showDice3}
             playAgain={this.playAgain}
-            navigation={this.navigation}
           />
 
           <View style={styles.firstHalfSpace}>
-            <View style={styles.upperSpace}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('DS_Homescreen')}>
-                <Image
-                  source={require('../Assets/Images/back.png')}
-                  style={styles.backIcon}
-                />
-              </TouchableOpacity>
-              <View style={styles.scoreSpace}>
-                <Image
-                  source={require('../Assets/Images/coin.png')}
-                  style={styles.coinIcon}
-                />
-                <Text style={styles.upperScoreText}>
-                  {this.state.totalCoins}
-                </Text>
-              </View>
-            </View>
+            {/* Top navigation (Back button and Coins) */}
+            <TopNavigation
+              navigation={this.navigation}
+              totalCoins={this.state.totalCoins}
+              hpBar={this.state.hpbar}
+            />
+
             <View style={styles.topSpace} />
             <View style={styles.dragonSpace}>
-              <Image source={this.state.dragon} style={styles.dragon} />
+              {/* Dragon GIF */}
+              <DragonGIF source={this.state.dragon} hpBar={this.state.hpbar} />
+
               <View style={styles.diceSpace}>
                 <Animated.Image
                   source={this.state.showDice3}
@@ -594,6 +596,7 @@ export class DSPlayGame extends Component {
                   fadeDuration={0}
                 />
               </View>
+
               <View style={styles.diceSpace}>
                 <Animated.Image
                   source={this.state.showDice2}
@@ -601,6 +604,7 @@ export class DSPlayGame extends Component {
                   fadeDuration={0}
                 />
               </View>
+
               <View style={styles.diceSpace}>
                 <Animated.Image
                   source={this.state.showDice1}
@@ -711,11 +715,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: hp('3%'),
   },
-  dragon: {
-    height: hp('50%'),
-    width: hp('50%'),
-    resizeMode: 'contain',
-  },
+
   diceSpace: {
     flexDirection: 'row',
     position: 'absolute',
@@ -780,96 +780,5 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: hp('7.5%'),
     width: hp('45%'),
-  },
-  // MODAL ==============================================================================================
-  modalBackgroundImage: {
-    flex: 1,
-    resizeMode: 'contain',
-  },
-  modalBgContainer: {
-    flex: 1,
-    margin: wp('7.5%'),
-    paddingVertical: wp('7.5%'),
-  },
-  modalInside: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  modalDices: {
-    flex: 1.4,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  modalDiceSpace: {
-    flex: 1.4,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-  modalDiceTextSpace: {
-    flexDirection: 'row',
-    position: 'absolute',
-    bottom: hp('4%'),
-    left: hp('0%'),
-    right: hp('0%'),
-  },
-  modalDiceTextSpaceEach: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  modalDiceSize: {
-    height: hp('11.2%'),
-    width: hp('11.2%'),
-    resizeMode: 'contain',
-  },
-  modalDiceText: {
-    fontFamily: 'TitanOne-Regular',
-    color: '#fff',
-    fontSize: hp('2.5%'),
-  },
-  modalScoreYS: {
-    flex: 0.3,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-  modalScoreText: {
-    fontFamily: 'Bombardment',
-    textShadowColor: 'rgb(191,104,80)',
-    textShadowOffset: {width: hp('-0.3%'), height: hp('0.4%')},
-    textShadowRadius: hp('0.2%'),
-    color: '#f0a66e',
-  },
-  modalScoreText1: {
-    fontSize: hp('5%'),
-  },
-  modalScoreNum: {
-    flex: 0.55,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-  modalScoreText2: {
-    fontSize: hp('12%'),
-  },
-  modalButtonSpace: {
-    flex: 1.2,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: hp('2%'),
-  },
-  modalButtonSpace1: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalButtonSpace2: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalButton: {
-    borderRadius: hp('0.3%'),
-    resizeMode: 'contain',
-    height: hp('6%'),
-    width: hp('22%'),
   },
 });

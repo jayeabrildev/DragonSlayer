@@ -10,7 +10,7 @@ const scoreboard = (props) => {
         <View style={styles.container}>
             <View style={styles.modalBgContainer}>
             <ImageBackground
-              source={require('../Assets/Images/bgmodal.png')}
+              source={require('../Assets/Images/bgmodal_victory.png')}
               style={styles.modalBackgroundImage}>
               <View style={styles.modalInside}>
                 <View style={styles.modalDices}>
@@ -47,6 +47,15 @@ const scoreboard = (props) => {
                     </View>
                   </View>
                 </View>
+                {/* -------- */}
+                <View style = {styles.modalScoreYS}>
+                  <Text style = {[styles.modalScoreText,styles.modalScoreText1]}>C O N G R A T S</Text>
+                </View>
+                  <View style = {styles.modalScoreNum}>      
+                      <Text style = {[styles.modalScoreText,styles.modalScoreText2]}>{this.state.roundCoins}</Text>
+                      <Image source = {require('../Assets/Images/chest.gif')}/>
+                  </View>
+
                 <View style={styles.modalScoreYS}>
                   <Text
                     style={[styles.modalScoreText, styles.modalScoreText1]}>
@@ -59,6 +68,7 @@ const scoreboard = (props) => {
                     {props.totalScore}
                   </Text>
                 </View>
+                {/* ------------- */}
                 <View style={styles.modalButtonSpace}>
                   <View style={styles.modalButtonSpace1}>
                     <TouchableOpacity onPress={props.playAgain}>
@@ -70,7 +80,7 @@ const scoreboard = (props) => {
                   </View>
                   <View style={styles.modalButtonSpace2}>
                     <TouchableOpacity
-                      onPress={() => props.navigation.navigate('DS_Homescreen')}>
+                      onPress={() => navigation.navigate('DS_Homescreen')}>
                       <Image
                         source={require('../Assets/Images/quitbutton.png')}
                         style={styles.modalButton}
@@ -136,7 +146,7 @@ const styles = StyleSheet.create({
   modalDiceText: {
     fontFamily: 'TitanOne-Regular',
     color: '#fff',
-    fontSize: hp('2.5%'),
+    fontSize: hp('2%'),
   },
   modalScoreYS: {
     flex: 0.3,
