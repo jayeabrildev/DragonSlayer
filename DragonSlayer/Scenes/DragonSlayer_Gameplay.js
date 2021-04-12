@@ -23,7 +23,6 @@ import slsh from '../Assets/Audio/sfx_slash.mp3';
 import TopNavigation from '../Components/topnavigation';
 import DragonGIF from '../Components/dragon';
 import Scoreboard from '../Components/scoreboard';
-import Dice from '../Components/dice';
 
 Sound.setCategory('Playback');
 
@@ -574,6 +573,7 @@ export class DSPlayGame extends Component {
             dice2={this.state.showDice2}
             dice3={this.state.showDice3}
             playAgain={this.playAgain}
+            roundCoins={this.state.roundCoins}
           />
 
           <View style={styles.firstHalfSpace}>

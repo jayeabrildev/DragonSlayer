@@ -1,110 +1,105 @@
-import React from 'react'
-import {Modal, View, Image, StyleSheet, ImageBackground, Text, TouchableOpacity }from 'react-native' 
+import React from 'react';
 import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
-  } from 'react-native-responsive-screen';
-const scoreboard = (props) => {
-    return (
-        <Modal transparent={true} visible = {props.visible}>
-        <View style={styles.container}>
-            <View style={styles.modalBgContainer}>
-            <ImageBackground
-              source={require('../Assets/Images/bgmodal_victory.png')}
-              style={styles.modalBackgroundImage}>
-              <View style={styles.modalInside}>
-                <View style={styles.modalDices}>
-                  <View style={styles.modalDiceSpace}>
-                    <Image
-                      source={props.dice1}
-                      style={styles.modalDiceSize}
-                    />
-                    <Image
-                      source={props.dice2}
-                      style={styles.modalDiceSize}
-                    />
-                    <Image
-                      source={props.dice3}
-                      style={styles.modalDiceSize}
-                    />
-                  </View>
+  Modal,
+  View,
+  Image,
+  StyleSheet,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+const scoreboard = props => {
+  return (
+    <Modal transparent={true} visible={props.visible}>
+      <View style={styles.container}>
+        <View style={styles.modalBgContainer}>
+          <ImageBackground
+            source={require('../Assets/Images/bgmodal_victory.png')}
+            style={styles.modalBackgroundImage}>
+            <View style={styles.modalInside}>
+              <View style={styles.modalDices}>
+                <View style={styles.modalDiceSpace}>
+                  <Image source={props.dice1} style={styles.modalDiceSize} />
+                  <Image source={props.dice2} style={styles.modalDiceSize} />
+                  <Image source={props.dice3} style={styles.modalDiceSize} />
+                </View>
 
-                  <View style={styles.modalDiceTextSpace}>
-                    <View style={styles.modalDiceTextSpaceEach}>
-                      <Text style={styles.modalDiceText}>
-                        {props.score1}
-                      </Text>
-                    </View>
-                    <View style={styles.modalDiceTextSpaceEach}>
-                      <Text style={styles.modalDiceText}>
-                        {props.score2}
-                      </Text>
-                    </View>
-                    <View style={styles.modalDiceTextSpaceEach}>
-                      <Text style={styles.modalDiceText}>
-                        {props.score3}
-                      </Text>
-                    </View>
+                <View style={styles.modalDiceTextSpace}>
+                  <View style={styles.modalDiceTextSpaceEach}>
+                    <Text style={styles.modalDiceText}>{props.score1}</Text>
                   </View>
-                </View>
-                {/* -------- */}
-                <View style = {styles.modalScoreYS}>
-                  <Text style = {[styles.modalScoreText,styles.modalScoreText1]}>C O N G R A T S</Text>
-                </View>
-                  <View style = {styles.modalScoreNum}>      
-                      <Text style = {[styles.modalScoreText,styles.modalScoreText2]}>{this.state.roundCoins}</Text>
-                      <Image source = {require('../Assets/Images/chest.gif')}/>
+                  <View style={styles.modalDiceTextSpaceEach}>
+                    <Text style={styles.modalDiceText}>{props.score2}</Text>
                   </View>
-
-                <View style={styles.modalScoreYS}>
-                  <Text
-                    style={[styles.modalScoreText, styles.modalScoreText1]}>
-                    Your Score:
-                  </Text>
-                </View>
-                <View style={styles.modalScoreNum}>
-                  <Text
-                    style={[styles.modalScoreText, styles.modalScoreText2]}>
-                    {props.totalScore}
-                  </Text>
-                </View>
-                {/* ------------- */}
-                <View style={styles.modalButtonSpace}>
-                  <View style={styles.modalButtonSpace1}>
-                    <TouchableOpacity onPress={props.playAgain}>
-                      <Image
-                        source={require('../Assets/Images/playagainbutton.png')}
-                        style={styles.modalButton}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                  <View style={styles.modalButtonSpace2}>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate('DS_Homescreen')}>
-                      <Image
-                        source={require('../Assets/Images/quitbutton.png')}
-                        style={styles.modalButton}
-                      />
-                    </TouchableOpacity>
+                  <View style={styles.modalDiceTextSpaceEach}>
+                    <Text style={styles.modalDiceText}>{props.score3}</Text>
                   </View>
                 </View>
               </View>
-            </ImageBackground>
-          </View>
+              {/* -------- */}
+              <View style={styles.modalScoreYS}>
+                <Text style={[styles.modalScoreText, styles.modalScoreText1]}>
+                  C O N G R A T S
+                </Text>
+              </View>
+              <View style={styles.modalScoreNum}>
+                <Text style={[styles.modalScoreText, styles.modalScoreText2]}>
+                  {props.roundCoins}
+                </Text>
+                <Image source={require('../Assets/Images/chest.gif')} />
+              </View>
+
+              <View style={styles.modalScoreYS}>
+                <Text style={[styles.modalScoreText, styles.modalScoreText1]}>
+                  Your Score:
+                </Text>
+              </View>
+              <View style={styles.modalScoreNum}>
+                <Text style={[styles.modalScoreText, styles.modalScoreText2]}>
+                  {props.totalScore}
+                </Text>
+              </View>
+              {/* ------------- */}
+              <View style={styles.modalButtonSpace}>
+                <View style={styles.modalButtonSpace1}>
+                  <TouchableOpacity onPress={props.playAgain}>
+                    <Image
+                      source={require('../Assets/Images/playagainbutton.png')}
+                      style={styles.modalButton}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.modalButtonSpace2}>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('DS_Homescreen')}>
+                    <Image
+                      source={require('../Assets/Images/quitbutton.png')}
+                      style={styles.modalButton}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </ImageBackground>
         </View>
-      </Modal>
-    )
-}
+      </View>
+    </Modal>
+  );
+};
 export default scoreboard;
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
   },
   modalBackgroundImage: {
-      flex: 1,
-      resizeMode: 'contain',
-    },
+    flex: 1,
+    resizeMode: 'contain',
+  },
   modalBgContainer: {
     flex: 1,
     margin: wp('7.5%'),
@@ -191,5 +186,4 @@ const styles = StyleSheet.create({
     height: hp('6%'),
     width: hp('22%'),
   },
-})
-
+});
