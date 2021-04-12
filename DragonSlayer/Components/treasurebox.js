@@ -4,7 +4,7 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
   } from 'react-native-responsive-screen';
-const scoreboard = (props) => {
+const treasurebox = (props) => {
     return (
         <Modal transparent={true} visible = {props.visible}>
         <View style={styles.container}>
@@ -85,7 +85,7 @@ const scoreboard = (props) => {
       </Modal>
     )
 }
-export default scoreboard;
+export default treasurebox;
 
 const styles = StyleSheet.create({
   container:{

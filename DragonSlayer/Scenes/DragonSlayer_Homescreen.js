@@ -91,7 +91,7 @@ class DSHome extends Component {
         </TouchableOpacity>
 
         <ImageBackground
-          source={require('../Assets/Images/bg_default.png')}
+          source={require('../Assets/Images/bgplay.png')}
           style={styles.backgroundImage}>
           <View style={styles.title}>
             <Image
