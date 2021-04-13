@@ -23,9 +23,23 @@ export class DragonSlayer_Tutorial extends Component {
         blurRadius={3}
         style={styles.backgroundImage}>
         <View style={styles.container}>
+
+        {/* close button */}
+        <TouchableOpacity
+              
+              onPress={() => navigation.navigate('DS_Homescreen')}
+              style={{alignSelf: 'flex-end'}}>
+              <Image
+                source={require('../Assets/Images/closebutton.png')}
+                style={styles.backIcon}
+              />
+            </TouchableOpacity>
+
+
           <ImageBackground
             source={require('../Assets/Images/Background/BG_modal_howtoplay.png')}
             style={styles.bg_howtoplay}>
+              
             <Text style={styles.text_howtoplay}>
               Slay the dragon! player has 3 rolls, each roll values from one to
               a hundred. total damage is equal to the result of the three dice
@@ -113,7 +127,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 30,
+    marginTop: 5,
   },
 
   bg_howtoplay: {
@@ -142,4 +156,11 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 10,
   },
+  backIcon: {
+    height: hp('7%'),
+    width: hp('10%'),
+    
+    resizeMode: 'contain',
+  },
+
 });
