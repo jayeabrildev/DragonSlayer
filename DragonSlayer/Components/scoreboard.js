@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     flex: 1.2,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: hp('2%'),
+    paddingTop: hp('1%'),
   },
   modalButtonSpace1: {
     justifyContent: 'center',
