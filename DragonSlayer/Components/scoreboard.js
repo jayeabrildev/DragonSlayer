@@ -50,7 +50,7 @@ const scoreboard = props => {
                 <Text style={[styles.modalScoreText, styles.modalScoreText2]}>
                   {props.roundCoins}
                 </Text>
-                <Image source={require('../Assets/Images/chest.gif')} />
+                <Image source={require('../Assets/Images/chestcoin.gif')} />
               </View>
 
               <View style={styles.modalScoreYS}>
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     flex: 1.2,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: hp('2%'),
+    paddingTop: hp('1%'),
   },
   modalButtonSpace1: {
     justifyContent: 'center',
