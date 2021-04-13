@@ -11,7 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import Logo from '../Assets/Images/dragonGIF1.gif';
+import Logo from '../Assets/Images/Dragon/dragonGIF1.gif';
 import Sound from 'react-native-sound';
 import dsls from '../Assets/Audio/bgmusic_loadingscreen.mp3';
 Sound.setCategory('Playback');
@@ -71,7 +71,7 @@ class DragonSlayer_Loadingscreen extends Component {
     });
     return (
       <ImageBackground
-        source={require('../Assets/Images/bgload.png')}
+        source={require('../Assets/Images/Background/Background_loadingscreen.png')}
         style={styles.backgroundImage}>
         <View style={styles.container}>
           <Animated.View

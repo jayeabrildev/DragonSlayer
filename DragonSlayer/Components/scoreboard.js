@@ -18,39 +18,14 @@ const scoreboard = props => {
       <View style={styles.container}>
         <View style={styles.modalBgContainer}>
           <ImageBackground
-            source={require('../Assets/Images/bgmodal_victory.png')}
+            source={require('../Assets/Images/Background/BG_modal_victory.png')}
             style={styles.modalBackgroundImage}>
             <View style={styles.modalInside}>
-              <View style={styles.modalDices}>
-                <View style={styles.modalDiceSpace}>
-                  <Image source={props.dice1} style={styles.modalDiceSize} />
-                  <Image source={props.dice2} style={styles.modalDiceSize} />
-                  <Image source={props.dice3} style={styles.modalDiceSize} />
-                </View>
-
-                <View style={styles.modalDiceTextSpace}>
-                  <View style={styles.modalDiceTextSpaceEach}>
-                    <Text style={styles.modalDiceText}>{props.score1}</Text>
-                  </View>
-                  <View style={styles.modalDiceTextSpaceEach}>
-                    <Text style={styles.modalDiceText}>{props.score2}</Text>
-                  </View>
-                  <View style={styles.modalDiceTextSpaceEach}>
-                    <Text style={styles.modalDiceText}>{props.score3}</Text>
-                  </View>
-                </View>
-              </View>
-              {/* -------- */}
-              <View style={styles.modalScoreYS}>
-                <Text style={[styles.modalScoreText, styles.modalScoreText1]}>
-                  C O N G R A T S
-                </Text>
-              </View>
               <View style={styles.modalScoreNum}>
-                <Text style={[styles.modalScoreText, styles.modalScoreText2]}>
-                  {props.roundCoins}
-                </Text>
-                <Image source={require('../Assets/Images/chest.gif')} />
+                <Image
+                  source={require('../Assets/Images/chestcoin.gif')}
+                  style={styles.chestGIF}
+                />
               </View>
 
               <View style={styles.modalScoreYS}>
@@ -110,43 +85,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  modalDices: {
-    flex: 1.4,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  modalDiceSpace: {
-    flex: 1.4,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-  modalDiceTextSpace: {
-    flexDirection: 'row',
-    position: 'absolute',
-    bottom: hp('4%'),
-    left: hp('0%'),
-    right: hp('0%'),
-  },
-  modalDiceTextSpaceEach: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  modalDiceSize: {
-    height: hp('11.2%'),
-    width: hp('11.2%'),
+  chestGIF: {
+    width: wp('50%'),
     resizeMode: 'contain',
+    marginTop: 20,
   },
-  modalDiceText: {
-    fontFamily: 'TitanOne-Regular',
-    color: '#fff',
-    fontSize: hp('2%'),
-  },
+
   modalScoreYS: {
     flex: 0.3,
     alignItems: 'center',
     justifyContent: 'flex-end',
+    marginTop: 200,
   },
   modalScoreText: {
     fontFamily: 'Bombardment',
@@ -161,10 +110,9 @@ const styles = StyleSheet.create({
   modalScoreNum: {
     flex: 0.55,
     alignItems: 'center',
-    justifyContent: 'flex-end',
   },
   modalScoreText2: {
-    fontSize: hp('12%'),
+    fontSize: hp('9%'),
   },
   modalButtonSpace: {
     flex: 1.2,

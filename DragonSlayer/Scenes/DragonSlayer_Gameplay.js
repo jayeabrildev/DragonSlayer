@@ -88,13 +88,13 @@ export class DSPlayGame extends Component {
     getDragonImage = dragonRandom => {
       switch (dragonRandom) {
         case 1:
-          return require('../Assets/Images/dragon1.gif');
+          return require('../Assets/Images/Dragon/dragon1.gif');
           break;
         case 2:
-          return require('../Assets/Images/dragon2.gif');
+          return require('../Assets/Images/Dragon/dragon2.gif');
           break;
         case 3:
-          return require('../Assets/Images/dragon3.gif');
+          return require('../Assets/Images/Dragon/dragon3.gif');
           break;
       }
     };
@@ -121,7 +121,7 @@ export class DSPlayGame extends Component {
       dice3Line: new Animated.ValueXY({x: hp('15%'), y: hp('50%')}),
       showDice3: null,
       showDice2: null,
-      showDice1: require('../Assets/Images/dice1empty.png'),
+      showDice1: require('../Assets/Images/Dice/dice1empty.png'),
       score1: '',
       score2: '',
       score3: '',
@@ -135,7 +135,7 @@ export class DSPlayGame extends Component {
       scoreBoard: false,
       treasureBox: false,
       click: 1,
-      hpbar: require('../Assets/Images/dragonhp_1.png'),
+      hpbar: require('../Assets/Images/Dragon/dragonhp_1.png'),
     };
   }
 
@@ -177,7 +177,7 @@ export class DSPlayGame extends Component {
 
     setTimeout(() => {
       this.setState({
-        showDice1: require('../Assets/Images/dice1empty.png'),
+        showDice1: require('../Assets/Images/Dice/dice1empty.png'),
       });
     }, 1400);
 
@@ -197,27 +197,33 @@ export class DSPlayGame extends Component {
     // Dragon Slash Effect
     if (this.state.dragoncount == 1) {
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon1.gif')});
+        this.setState({
+          dragon: require('../Assets/Images/Dragon/slash_dragon1.gif'),
+        });
         slash.play();
       }, 2500);
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon1.gif')});
+        this.setState({dragon: require('../Assets/Images/Dragon/dragon1.gif')});
       }, 3000);
     } else if (this.state.dragoncount == 2) {
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon2.gif')});
+        this.setState({
+          dragon: require('../Assets/Images/Dragon/slash_dragon2.gif'),
+        });
         slash.play();
       }, 2500);
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon2.gif')});
+        this.setState({dragon: require('../Assets/Images/Dragon/dragon2.gif')});
       }, 3000);
     } else if (this.state.dragoncount == 3) {
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon3.gif')});
+        this.setState({
+          dragon: require('../Assets/Images/Dragon/slash_dragon3.gif'),
+        });
         slash.play();
       }, 2500);
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon3.gif')});
+        this.setState({dragon: require('../Assets/Images/Dragon/dragon3.gif')});
       }, 3000);
     }
 
@@ -226,7 +232,7 @@ export class DSPlayGame extends Component {
       this.setState({
         disabled: false,
         sword: require('../Assets/Images/attackbutton.png'),
-        hpbar: require('../Assets/Images/dragonhp_2.png'),
+        hpbar: require('../Assets/Images/Dragon/dragonhp_2.png'),
       });
     }, 3000);
   };
@@ -267,11 +273,11 @@ export class DSPlayGame extends Component {
     this.setState({dice3anim1: new Animated.Value(0)});
     this.setState({dice3anim2: new Animated.ValueXY({x: 0, y: 0})});
 
-    this.setState({showDice2: require('../Assets/Images/dice2empty.png')});
+    this.setState({showDice2: require('../Assets/Images/Dice/dice2empty.png')});
 
     setTimeout(() => {
       this.setState({
-        showDice2: require('../Assets/Images/dice2empty.png'),
+        showDice2: require('../Assets/Images/Dice/dice2empty.png'),
       });
     }, 1400);
 
@@ -291,27 +297,33 @@ export class DSPlayGame extends Component {
     // Dragon Slash Effect
     if (this.state.dragoncount == 1) {
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon1.gif')});
+        this.setState({
+          dragon: require('../Assets/Images/Dragon/slash_dragon1.gif'),
+        });
         slash.play();
       }, 2500);
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon1.gif')});
+        this.setState({dragon: require('../Assets/Images/Dragon/dragon1.gif')});
       }, 3000);
     } else if (this.state.dragoncount == 2) {
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon2.gif')});
+        this.setState({
+          dragon: require('../Assets/Images/Dragon/slash_dragon2.gif'),
+        });
         slash.play();
       }, 2500);
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon2.gif')});
+        this.setState({dragon: require('../Assets/Images/Dragon/dragon2.gif')});
       }, 3000);
     } else if (this.state.dragoncount == 3) {
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/slash_dragon3.gif')});
+        this.setState({
+          dragon: require('../Assets/Images/Dragon/slash_dragon3.gif'),
+        });
         slash.play();
       }, 2500);
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon3.gif')});
+        this.setState({dragon: require('../Assets/Images/Dragon/dragon3.gif')});
       }, 3000);
     }
 
@@ -320,7 +332,7 @@ export class DSPlayGame extends Component {
       this.setState({
         disabled: false,
         sword: require('../Assets/Images/attackbutton.png'),
-        hpbar: require('../Assets/Images/dragonhp_3.png'),
+        hpbar: require('../Assets/Images/Dragon/dragonhp_3.png'),
       });
     }, 3000);
   };
@@ -357,7 +369,7 @@ export class DSPlayGame extends Component {
       this.state.dice3anim2,
     );
 
-    this.setState({showDice3: require('../Assets/Images/dice3empty.png')});
+    this.setState({showDice3: require('../Assets/Images/Dice/dice3empty.png')});
 
     // Animate Explosion and Show score after 1 second
     setTimeout(() => {
@@ -376,35 +388,35 @@ export class DSPlayGame extends Component {
     if (this.state.dragoncount == 1) {
       setTimeout(() => {
         this.setState({
-          dragon: require('../Assets/Images/slash_dragon1.gif'),
-          hpbar: require('../Assets/Images/dragonhp_4.png'),
+          dragon: require('../Assets/Images/Dragon/slash_dragon1.gif'),
+          hpbar: require('../Assets/Images/Dragon/dragonhp_4.png'),
         });
         slash.play();
       }, 2500);
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon1.gif')});
+        this.setState({dragon: require('../Assets/Images/Dragon/dragon1.gif')});
       }, 3000);
     } else if (this.state.dragoncount == 2) {
       setTimeout(() => {
         this.setState({
-          dragon: require('../Assets/Images/slash_dragon2.gif'),
-          hpbar: require('../Assets/Images/dragonhp_4.png'),
+          dragon: require('../Assets/Images/Dragon/slash_dragon2.gif'),
+          hpbar: require('../Assets/Images/Dragon/dragonhp_4.png'),
         });
         slash.play();
       }, 2500);
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon2.gif')});
+        this.setState({dragon: require('../Assets/Images/Dragon/dragon2.gif')});
       }, 3000);
     } else if (this.state.dragoncount == 3) {
       setTimeout(() => {
         this.setState({
-          dragon: require('../Assets/Images/slash_dragon3.gif'),
-          hpbar: require('../Assets/Images/dragonhp_4.png'),
+          dragon: require('../Assets/Images/Dragon/slash_dragon3.gif'),
+          hpbar: require('../Assets/Images/Dragon/dragonhp_4.png'),
         });
         slash.play();
       }, 2500);
       setTimeout(() => {
-        this.setState({dragon: require('../Assets/Images/dragon3.gif')});
+        this.setState({dragon: require('../Assets/Images/Dragon/dragon3.gif')});
       }, 3000);
     }
 
@@ -480,7 +492,7 @@ export class DSPlayGame extends Component {
       dice1Line: new Animated.ValueXY({x: hp('-15%'), y: hp('50%')}),
       dice2Line: new Animated.ValueXY({x: hp('0%'), y: hp('50%')}),
       dice3Line: new Animated.ValueXY({x: hp('15%'), y: hp('50%')}),
-      showDice1: require('../Assets/Images/dice1.png'),
+      showDice1: require('../Assets/Images/Dice/dice1.png'),
       showDice2: null,
       showDice3: null,
       score1: '',
@@ -491,7 +503,7 @@ export class DSPlayGame extends Component {
       sword: require('../Assets/Images/attackbutton.png'),
       totalScore: 0,
       scoreBoard: false,
-      hpbar: require('../Assets/Images/dragonhp_1.png'),
+      hpbar: require('../Assets/Images/Dragon/dragonhp_1.png'),
     });
   };
 
@@ -559,7 +571,7 @@ export class DSPlayGame extends Component {
     const navigation = this.props.navigation;
     return (
       <ImageBackground
-        source={require('../Assets/Images/bg_default.png')}
+        source={require('../Assets/Images/Background/Background_default.png')}
         style={styles.backgroundImage}>
         <View style={styles.container}>
           {/* Scoreboard (Modal) */}
@@ -615,19 +627,19 @@ export class DSPlayGame extends Component {
 
               <View style={styles.diceSpace}>
                 <Animated.Image
-                  source={require('../Assets/Images/dice_line.png')}
+                  source={require('../Assets/Images/Dice/dice_line.png')}
                   style={[styles.diceLine, diceLinePlace1]}
                 />
               </View>
               <View style={styles.diceSpace}>
                 <Animated.Image
-                  source={require('../Assets/Images/dice_line.png')}
+                  source={require('../Assets/Images/Dice/dice_line.png')}
                   style={[styles.diceLine, diceLinePlace2]}
                 />
               </View>
               <View style={styles.diceSpace}>
                 <Animated.Image
-                  source={require('../Assets/Images/dice_line.png')}
+                  source={require('../Assets/Images/Dice/dice_line.png')}
                   style={[styles.diceLine, diceLinePlace3]}
                 />
               </View>
