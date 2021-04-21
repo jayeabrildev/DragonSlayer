@@ -12,59 +12,65 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+
+import {BlurView} from '@react-native-community/blur';
 const scoreboard = props => {
   return (
     <Modal transparent={true} visible={props.visible}>
-      <View style={styles.container}>
-        <View style={styles.modalBgContainer}>
-          <ImageBackground
-            source={require('../Assets/Images/Background/BG_modal_victory.png')}
-            style={styles.modalBackgroundImage}>
-            <View style={styles.modalInside}>
-              <View style={styles.modalScoreNum}>
-                <Image
-                  source={require('../Assets/Images/chestcoin.gif')}
-                  style={styles.chestGIF}
-                />
-              </View>
+      <BlurView style={styles.absolute} blurType="light" blurAmount={1}>
+        <View style={styles.container}>
+          <View style={styles.modalBgContainer}>
+            <ImageBackground
+              source={require('../Assets/Images/Background/BG_modal_victory.png')}
+              style={styles.modalBackgroundImage}>
+              <View style={styles.modalInside}>
+                <View style={styles.rewardsArea}>
+                  <Image
+                    source={require('../Assets/Images/coin.png')}
+                    style={styles.coinReward}
+                  />
+                  <Text style={styles.coinValue}>{props.roundCoins}</Text>
+                </View>
 
-              <View style={styles.modalScoreYS}>
-                <Text style={[styles.modalScoreText, styles.modalScoreText1]}>
-                  Your Score:
-                </Text>
-              </View>
-              <View style={styles.modalScoreNum}>
-                <Text style={[styles.modalScoreText, styles.modalScoreText2]}>
-                  {props.totalScore}
-                </Text>
-              </View>
-              {/* ------------- */}
-              <View style={styles.modalButtonSpace}>
-                <View style={styles.modalButtonSpace1}>
-                  <TouchableOpacity onPress={props.playAgain}>
-                    <Image
-                      source={require('../Assets/Images/playagainbutton.png')}
-                      style={styles.modalButton}
-                    />
-                  </TouchableOpacity>
+                <View style={styles.modalScoreYS}>
+                  <Text style={[styles.modalScoreText, styles.modalScoreText1]}>
+                    Your Score:
+                  </Text>
                 </View>
-                <View style={styles.modalButtonSpace2}>
-                  <TouchableOpacity
-                    onPress={() => props.nav.navigate('DS_Homescreen')}>
-                    <Image
-                      source={require('../Assets/Images/quitbutton.png')}
-                      style={styles.modalButton}
-                    />
-                  </TouchableOpacity>
+                <View style={styles.modalScoreNum}>
+                  <Text style={[styles.modalScoreText, styles.modalScoreText2]}>
+                    {props.totalScore}
+                  </Text>
+                </View>
+                {/* ------------- */}
+                <View style={styles.modalButtonSpace}>
+                  <View style={styles.modalButtonSpace1}>
+                    <TouchableOpacity onPress={props.playAgain}>
+                      <Image
+                        source={require('../Assets/Images/playagainbutton.png')}
+                        style={styles.modalButton}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.modalButtonSpace2}>
+                    <TouchableOpacity
+                      onPress={() => props.nav.navigate('DS_Homescreen')}>
+                      <Image
+                        source={require('../Assets/Images/quitbutton.png')}
+                        style={styles.modalButton}
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
-            </View>
-          </ImageBackground>
+            </ImageBackground>
+          </View>
         </View>
-      </View>
+      </BlurView>
     </Modal>
   );
 };
+
 export default scoreboard;
 
 const styles = StyleSheet.create({
@@ -77,25 +83,46 @@ const styles = StyleSheet.create({
   },
   modalBgContainer: {
     flex: 1,
-    margin: wp('7.5%'),
-    paddingVertical: wp('7.5%'),
+    paddingVertical: hp('10%'),
+    paddingHorizontal: wp('7%'),
+    backgroundColor: 'transparent',
   },
   modalInside: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  chestGIF: {
-    width: wp('50%'),
-    resizeMode: 'contain',
-    marginTop: 20,
+
+  // Coin Area
+  coinReward: {
+    width: 25,
+    height: 30,
+    resizeMode: 'cover',
+    marginTop: 5,
+  },
+
+  coinValue: {
+    fontSize: 30,
+    fontFamily: 'Bombardment',
+    textShadowColor: 'rgb(191,104,80)',
+    textShadowOffset: {width: hp('-0.3%'), height: hp('0.4%')},
+    textShadowRadius: hp('0.2%'),
+    color: '#f0a66e',
+    marginLeft: 10,
+  },
+
+  rewardsArea: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginTop: 150,
   },
 
   modalScoreYS: {
     flex: 0.3,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginTop: 200,
+    marginTop: 30,
   },
   modalScoreText: {
     fontFamily: 'Bombardment',
@@ -118,7 +145,7 @@ const styles = StyleSheet.create({
     flex: 1.2,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: hp('1%'),
+    paddingTop: 50,
   },
   modalButtonSpace1: {
     justifyContent: 'center',
@@ -133,5 +160,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: hp('6%'),
     width: hp('22%'),
+  },
+  absolute: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 });

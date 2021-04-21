@@ -14,14 +14,6 @@ const topnavigation = props => {
           style={styles.backIcon}
         />
       </TouchableOpacity>
-
-      <View style={styles.scoreSpace}>
-        <Image
-          source={require('../Assets/Images/coin.png')}
-          style={styles.coinIcon}
-        />
-        <Text style={styles.upperScoreText}>{props.totalCoins}</Text>
-      </View>
     </View>
   );
 };
@@ -36,14 +28,7 @@ const styles = StyleSheet.create({
     width: hp('4%'),
     resizeMode: 'contain',
   },
-  scoreSpace: {
-    flexDirection: 'row',
-  },
-  coinIcon: {
-    height: hp('3.5%'),
-    width: hp('2.5%'),
-    resizeMode: 'contain',
-  },
+
   upperScoreText: {
     color: '#fff',
     fontWeight: 'bold',

@@ -136,6 +136,7 @@ export class DSPlayGame extends Component {
       treasureBox: false,
       click: 1,
       hpbar: require('../Assets/Images/Dragon/dragonhp_1.png'),
+      showBlur: false,
     };
   }
 
@@ -452,12 +453,16 @@ export class DSPlayGame extends Component {
       } else {
         alert('talo');
       }
-    }, 2000);
 
-    // Show Scoreboard after 4 seconds
-    setTimeout(() => {
-      this.setState({scoreBoard: true, totalCoins: this.state.coins});
-    }, 4000);
+      this.state.roundCoins = this.state.coins;
+      // Show Scoreboard after 4 seconds
+      setTimeout(() => {
+        this.setState({
+          scoreBoard: true,
+          totalCoins: this.state.coins,
+        });
+      }, 1000);
+    }, 2000);
   };
 
   // Function called when attack button is pressed, identifies what is the current attack sequence
@@ -573,21 +578,6 @@ export class DSPlayGame extends Component {
         source={require('../Assets/Images/Background/Background_default.png')}
         style={styles.backgroundImage}>
         <View style={styles.container}>
-          {/* Scoreboard (Modal) */}
-          <Scoreboard
-            nav={this.props.navigation}
-            visible={this.state.scoreBoard}
-            score1={this.state.score1}
-            score2={this.state.score2}
-            score3={this.state.score3}
-            totalScore={this.state.totalScore}
-            dice1={this.state.showDice1}
-            dice2={this.state.showDice2}
-            dice3={this.state.showDice3}
-            playAgain={this.playAgain}
-            roundCoins={this.state.roundCoins}
-          />
-
           <View style={styles.firstHalfSpace}>
             {/* Top navigation (Back button and Coins) */}
             <TopNavigation
@@ -676,6 +666,20 @@ export class DSPlayGame extends Component {
               </TouchableOpacity>
             </View>
           </View>
+          {/* Scoreboard (Modal) */}
+          <Scoreboard
+            nav={this.props.navigation}
+            visible={this.state.scoreBoard}
+            score1={this.state.score1}
+            score2={this.state.score2}
+            score3={this.state.score3}
+            totalScore={this.state.totalScore}
+            dice1={this.state.showDice1}
+            dice2={this.state.showDice2}
+            dice3={this.state.showDice3}
+            playAgain={this.playAgain}
+            roundCoins={this.state.roundCoins}
+          />
         </View>
       </ImageBackground>
     );
