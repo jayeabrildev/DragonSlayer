@@ -9,11 +9,11 @@ import {
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
-import {interpolate} from 'react-native-reanimated';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+
 import Sound from 'react-native-sound';
 import spin from '../Assets/Audio/sfx_rolldice.mp3';
 import dspg from '../Assets/Audio/bgmusic_gameplay.mp3';
@@ -452,7 +452,6 @@ export class DSPlayGame extends Component {
       } else {
         alert('talo');
       }
-      this.state.coins = this.state.totalCoins + this.state.coins;
     }, 2000);
 
     // Show Scoreboard after 4 seconds
@@ -509,7 +508,7 @@ export class DSPlayGame extends Component {
 
   render() {
     // Play background music
-    bgsound.setVolume(50);
+    bgsound.setVolume(1);
     bgsound.play();
     bgsound.setNumberOfLoops(20);
 
@@ -568,7 +567,7 @@ export class DSPlayGame extends Component {
       ],
     };
 
-    const navigation = this.props.navigation;
+    const navigation = this.navigation;
     return (
       <ImageBackground
         source={require('../Assets/Images/Background/Background_default.png')}
@@ -576,6 +575,7 @@ export class DSPlayGame extends Component {
         <View style={styles.container}>
           {/* Scoreboard (Modal) */}
           <Scoreboard
+            nav={this.props.navigation}
             visible={this.state.scoreBoard}
             score1={this.state.score1}
             score2={this.state.score2}
@@ -591,7 +591,7 @@ export class DSPlayGame extends Component {
           <View style={styles.firstHalfSpace}>
             {/* Top navigation (Back button and Coins) */}
             <TopNavigation
-              navigation={this.navigation}
+              nav={this.props.navigation}
               totalCoins={this.state.totalCoins}
               hpBar={this.state.hpbar}
             />

@@ -8,8 +8,7 @@ import {
 const topnavigation = props => {
   return (
     <View style={styles.upperSpace}>
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate('DS_Homescreen')}>
+      <TouchableOpacity onPress={() => props.nav.navigate('DS_Homescreen')}>
         <Image
           source={require('../Assets/Images/back.png')}
           style={styles.backIcon}

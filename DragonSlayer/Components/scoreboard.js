@@ -50,7 +50,7 @@ const scoreboard = props => {
                 </View>
                 <View style={styles.modalButtonSpace2}>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('DS_Homescreen')}>
+                    onPress={() => props.nav.navigate('DS_Homescreen')}>
                     <Image
                       source={require('../Assets/Images/quitbutton.png')}
                       style={styles.modalButton}

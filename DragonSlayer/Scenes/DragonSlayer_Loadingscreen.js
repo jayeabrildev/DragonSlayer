@@ -11,12 +11,11 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import Logo from '../Assets/Images/Dragon/dragonGIF1.gif';
 import Sound from 'react-native-sound';
-import dsls from '../Assets/Audio/bgmusic_loadingscreen.mp3';
+import bg from '../Assets/Audio/bgmusic_homescreen.mp3';
 Sound.setCategory('Playback');
 
-var bgsound = new Sound(dsls, Sound.MAIN_BUNDLE, error => {
+var bgsound = new Sound(bg, Sound.MAIN_BUNDLE, error => {
   if (error) {
     console.log('failed to load the sound', error);
     return;
@@ -29,7 +28,6 @@ var bgsound = new Sound(dsls, Sound.MAIN_BUNDLE, error => {
   );
 });
 bgsound.setNumberOfLoops(-1);
-bgsound.release();
 
 class DragonSlayer_Loadingscreen extends Component {
   state = {
@@ -61,7 +59,6 @@ class DragonSlayer_Loadingscreen extends Component {
 
   render() {
     bgsound.setVolume(50);
-
     bgsound.play(success => {
       if (success) {
         console.log('successfully finished playing');
