@@ -14,6 +14,17 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		54622576D235404AAC63BA77 /* Voltaire-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F8C52F98ADB4F9EBB9981E1 /* Voltaire-Regular.ttf */; };
 		9928CF8C3C1E44B99DC1169F /* Voltaire.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECFE63A2CB164D918D8F3837 /* Voltaire.ttf */; };
+		7F34BD1DEA1D4E72AAB24BFA /* AbrilFatface-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C879771809F4FBB92079F3F /* AbrilFatface-Regular.ttf */; };
+		C7BF3DC0DCFC446F9F814D71 /* AkayaTelivigala-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0926688459140B5A7798AD0 /* AkayaTelivigala-Regular.ttf */; };
+		58E272A672F546DCACB3BCD4 /* Back to Black Demo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 782C11837F79458A897261C3 /* Back to Black Demo.ttf */; };
+		FFCB9B4BAF18434EBFDDAD1B /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8E64EF339CB4F89A9EBA5FA /* Bangers-Regular.ttf */; };
+		F2631B1509C544B88B314F07 /* Bombardment.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BAEB31ED81044854A7A11CF2 /* Bombardment.ttf */; };
+		9621849BCC444B57B40765F7 /* Frijole-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3F32895342A42108F300E51 /* Frijole-Regular.ttf */; };
+		9C4C511FDAB3496CB0114CA3 /* GreatVibes-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3526F1F02BF34891934DCC3E /* GreatVibes-Regular.ttf */; };
+		7C667C7864364097A908CC5C /* Multicolore Pro.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6F55D9E075E479996D99803 /* Multicolore Pro.otf */; };
+		A47A867A3FDB4F1AB9DE8ACC /* SeaweedScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEE2093A2ACF468E94CEB2E0 /* SeaweedScript-Regular.ttf */; };
+		0727DD21272A45CCB3931FE6 /* TitanOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 774D2981EA1941808A856106 /* TitanOne-Regular.ttf */; };
+		7B7FF6AAD471425EA4329773 /* VarelaRound-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A275FC6C80B43DCA93AECEE /* VarelaRound-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +51,17 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		4F8C52F98ADB4F9EBB9981E1 /* Voltaire-Regular.ttf */ = {isa = PBXFileReference; name = "Voltaire-Regular.ttf"; path = "../assets/fonts/Voltaire-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		ECFE63A2CB164D918D8F3837 /* Voltaire.ttf */ = {isa = PBXFileReference; name = "Voltaire.ttf"; path = "../assets/fonts/Voltaire.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1C879771809F4FBB92079F3F /* AbrilFatface-Regular.ttf */ = {isa = PBXFileReference; name = "AbrilFatface-Regular.ttf"; path = "../src/fonts/AbrilFatface-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A0926688459140B5A7798AD0 /* AkayaTelivigala-Regular.ttf */ = {isa = PBXFileReference; name = "AkayaTelivigala-Regular.ttf"; path = "../src/fonts/AkayaTelivigala-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		782C11837F79458A897261C3 /* Back to Black Demo.ttf */ = {isa = PBXFileReference; name = "Back to Black Demo.ttf"; path = "../src/fonts/Back to Black Demo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D8E64EF339CB4F89A9EBA5FA /* Bangers-Regular.ttf */ = {isa = PBXFileReference; name = "Bangers-Regular.ttf"; path = "../src/fonts/Bangers-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BAEB31ED81044854A7A11CF2 /* Bombardment.ttf */ = {isa = PBXFileReference; name = "Bombardment.ttf"; path = "../src/fonts/Bombardment.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A3F32895342A42108F300E51 /* Frijole-Regular.ttf */ = {isa = PBXFileReference; name = "Frijole-Regular.ttf"; path = "../src/fonts/Frijole-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3526F1F02BF34891934DCC3E /* GreatVibes-Regular.ttf */ = {isa = PBXFileReference; name = "GreatVibes-Regular.ttf"; path = "../src/fonts/GreatVibes-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C6F55D9E075E479996D99803 /* Multicolore Pro.otf */ = {isa = PBXFileReference; name = "Multicolore Pro.otf"; path = "../src/fonts/Multicolore Pro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DEE2093A2ACF468E94CEB2E0 /* SeaweedScript-Regular.ttf */ = {isa = PBXFileReference; name = "SeaweedScript-Regular.ttf"; path = "../src/fonts/SeaweedScript-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		774D2981EA1941808A856106 /* TitanOne-Regular.ttf */ = {isa = PBXFileReference; name = "TitanOne-Regular.ttf"; path = "../src/fonts/TitanOne-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4A275FC6C80B43DCA93AECEE /* VarelaRound-Regular.ttf */ = {isa = PBXFileReference; name = "VarelaRound-Regular.ttf"; path = "../src/fonts/VarelaRound-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +156,17 @@
 			children = (
 				4F8C52F98ADB4F9EBB9981E1 /* Voltaire-Regular.ttf */,
 				ECFE63A2CB164D918D8F3837 /* Voltaire.ttf */,
+				1C879771809F4FBB92079F3F /* AbrilFatface-Regular.ttf */,
+				A0926688459140B5A7798AD0 /* AkayaTelivigala-Regular.ttf */,
+				782C11837F79458A897261C3 /* Back to Black Demo.ttf */,
+				D8E64EF339CB4F89A9EBA5FA /* Bangers-Regular.ttf */,
+				BAEB31ED81044854A7A11CF2 /* Bombardment.ttf */,
+				A3F32895342A42108F300E51 /* Frijole-Regular.ttf */,
+				3526F1F02BF34891934DCC3E /* GreatVibes-Regular.ttf */,
+				C6F55D9E075E479996D99803 /* Multicolore Pro.otf */,
+				DEE2093A2ACF468E94CEB2E0 /* SeaweedScript-Regular.ttf */,
+				774D2981EA1941808A856106 /* TitanOne-Regular.ttf */,
+				4A275FC6C80B43DCA93AECEE /* VarelaRound-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -231,6 +264,17 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				54622576D235404AAC63BA77 /* Voltaire-Regular.ttf in Resources */,
 				9928CF8C3C1E44B99DC1169F /* Voltaire.ttf in Resources */,
+				7F34BD1DEA1D4E72AAB24BFA /* AbrilFatface-Regular.ttf in Resources */,
+				C7BF3DC0DCFC446F9F814D71 /* AkayaTelivigala-Regular.ttf in Resources */,
+				58E272A672F546DCACB3BCD4 /* Back to Black Demo.ttf in Resources */,
+				FFCB9B4BAF18434EBFDDAD1B /* Bangers-Regular.ttf in Resources */,
+				F2631B1509C544B88B314F07 /* Bombardment.ttf in Resources */,
+				9621849BCC444B57B40765F7 /* Frijole-Regular.ttf in Resources */,
+				9C4C511FDAB3496CB0114CA3 /* GreatVibes-Regular.ttf in Resources */,
+				7C667C7864364097A908CC5C /* Multicolore Pro.otf in Resources */,
+				A47A867A3FDB4F1AB9DE8ACC /* SeaweedScript-Regular.ttf in Resources */,
+				0727DD21272A45CCB3931FE6 /* TitanOne-Regular.ttf in Resources */,
+				7B7FF6AAD471425EA4329773 /* VarelaRound-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
