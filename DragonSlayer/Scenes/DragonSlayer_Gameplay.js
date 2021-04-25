@@ -8,9 +8,13 @@ import {
   Animated,
   TouchableOpacity,
   BackHandler,
+<<<<<<< HEAD
   Alert,
 } from 'react-native';
 import {interpolate} from 'react-native-reanimated';
+=======
+} from 'react-native';
+>>>>>>> 2c7faab (Code refactor on score limiter)
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -24,8 +28,13 @@ import slsh from '../Assets/Audio/sfx_slash.mp3';
 import TopNavigation from '../Components/topnavigation';
 import DragonGIF from '../Components/dragon';
 import Scoreboard from '../Components/scoreboard';
+<<<<<<< HEAD
 import Loseboard from '../Components/loseboard';
 import { textChangeRangeIsUnchanged } from 'typescript';
+=======
+import Loseboard from '../Components/modal_loseboard';
+
+>>>>>>> 2c7faab (Code refactor on score limiter)
 Sound.setCategory('Playback');
 
 // Variables
@@ -87,12 +96,56 @@ export class DSPlayGame extends Component {
   constructor() {
     // Functions
 
+<<<<<<< HEAD
   getRandomLogic = () => {
     //let randonNumber = 0;  
     let randomNumber = Math.floor(Math.random()*7);
     console.log(randomNumber);
     return randomNumber;
   };
+=======
+    // Score limiter
+    getRandomLogic = () => {
+      let randomNumber = Math.floor(Math.random() * 7);
+      switch (randomNumber) {
+        case 0:
+          console.log('Limiter: ' + randomNumber);
+          console.log('Expected damage: Less than 650K');
+          break;
+        case 1:
+          console.log('Limiter: ' + randomNumber);
+          console.log('Expected damage: 650K - 699K');
+          console.log('Expected rewards: PHP 10.00');
+          break;
+        case 2:
+          console.log('Limiter: ' + randomNumber);
+          console.log('Expected damage: 740K - 749K');
+          console.log('Expected rewards: PHP 20.00');
+          break;
+        case 3:
+          console.log('Limiter: ' + randomNumber);
+          console.log('Expected damage: 750K - 799K');
+          console.log('Expected rewards: PHP 30.00');
+          break;
+        case 4:
+          console.log('Limiter: ' + randomNumber);
+          console.log('Expected damage: 800K - 849K');
+          console.log('Expected rewards: PHP 40.00');
+          break;
+        case 5:
+          console.log('Limiter: ' + randomNumber);
+          console.log('Expected damage: 850K - 899K');
+          console.log('Expected rewards: PHP 50.00');
+          break;
+        case 6:
+          console.log('Limiter: ' + randomNumber);
+          console.log('Expected damage: 900K - 1M');
+          console.log('Expected rewards: PHP 100.00');
+          break;
+      }
+      return randomNumber;
+    };
+>>>>>>> 2c7faab (Code refactor on score limiter)
 
 
   getRandomDragon = () => {
@@ -104,13 +157,12 @@ export class DSPlayGame extends Component {
       switch (dragonRandom) {
         case 1:
           return require('../Assets/Images/Dragon/dragon1.gif');
-          break;
+
         case 2:
           return require('../Assets/Images/Dragon/dragon2.gif');
-          break;
+
         case 3:
           return require('../Assets/Images/Dragon/dragon3.gif');
-          break;
       }
     };
 
@@ -253,6 +305,7 @@ export class DSPlayGame extends Component {
    
     super();
     this.state = {
+      Logic: getRandomLogic(),
       dragoncount: randomDragon,
       Logic: randomLogic,
       Attact: 1,
@@ -321,6 +374,7 @@ export class DSPlayGame extends Component {
       this.state.dice3anim2,
     );
 
+<<<<<<< HEAD
     this.setState({dice2anim1: new Animated.Value(0)});
     this.setState({dice2anim2: new Animated.ValueXY({x: 0, y: 0})});
 
@@ -342,6 +396,26 @@ export class DSPlayGame extends Component {
     setTimeout(() => {
       this.setState({screenScore: '', showExplosion: null});
     }, 2000);
+=======
+    let randomScore;
+    // Generate Score according to limiter
+    switch (attackSequence) {
+      // First Attack
+      case 1:
+        switch (this.state.Logic) {
+          case 0:
+            randomScore = Math.floor(Math.random() * 2) + 85;
+            break;
+          case 1:
+            randomScore = Math.floor(Math.random() * 2) + 87;
+            break;
+          case 6:
+            randomScore = Math.floor(Math.random() * 4) + 97;
+          default:
+            randomScore = Math.floor(Math.random() * 16) + 85;
+            break;
+        }
+>>>>>>> 2c7faab (Code refactor on score limiter)
 
     // Dragon Slash Effect
     if (this.state.dragoncount == 1) {
@@ -349,6 +423,7 @@ export class DSPlayGame extends Component {
         this.setState({
           dragon: require('../Assets/Images/Dragon/slash_dragon1.gif'),
         });
+<<<<<<< HEAD
         slash.play();
       }, 2500);
       setTimeout(() => {
@@ -356,9 +431,38 @@ export class DSPlayGame extends Component {
       }, 3000);
     } else if (this.state.dragoncount == 2) {
       setTimeout(() => {
+=======
+        break;
+      // Second Attack
+      case 2:
+        switch (this.state.Logic) {
+          case 0:
+            randomScore = Math.floor(Math.random() * 2) + 85;
+            break;
+          case 1:
+            randomScore = Math.floor(Math.random() * 2) + 87;
+            break;
+          case 2:
+            randomScore = Math.floor(Math.random() * 2) + 89;
+            break;
+          case 3:
+            randomScore = Math.floor(Math.random() * 2) + 91;
+            break;
+          case 4:
+            randomScore = Math.floor(Math.random() * 2) + 93;
+            break;
+          case 5:
+            randomScore = Math.floor(Math.random() * 2) + 95;
+            break;
+          case 6:
+            randomScore = Math.floor(Math.random() * 4) + 97;
+            break;
+        }
+>>>>>>> 2c7faab (Code refactor on score limiter)
         this.setState({
           dragon: require('../Assets/Images/Dragon/slash_dragon2.gif'),
         });
+<<<<<<< HEAD
         slash.play();
       }, 2500);
       setTimeout(() => {
@@ -366,6 +470,52 @@ export class DSPlayGame extends Component {
       }, 3000);
     } else if (this.state.dragoncount == 3) {
       setTimeout(() => {
+=======
+        break;
+      // Third Attack
+      case 3:
+        switch (this.state.Logic) {
+          case 0:
+            randomScore = Math.floor(Math.random() * 2) + 85;
+            break;
+          case 1:
+            randomScore = Math.floor(Math.random() * 2) + 87;
+            break;
+
+          default:
+            let dice = 85;
+            let minscore;
+            let score = this.state.totalScore;
+            let total = 0;
+
+            switch (this.state.Logic) {
+              case 2:
+                minscore = 700000;
+                break;
+              case 3:
+                minscore = 750000;
+                break;
+              case 4:
+                minscore = 800000;
+                break;
+              case 5:
+                minscore = 850000;
+                break;
+            }
+
+            do {
+              total = 0;
+              total = score * dice;
+              dice++;
+            } while (total <= minscore);
+            randomScore = dice;
+            break;
+          case 6:
+            randomScore = Math.floor(Math.random() * 4) + 97;
+            break;
+        }
+
+>>>>>>> 2c7faab (Code refactor on score limiter)
         this.setState({
           dragon: require('../Assets/Images/Dragon/slash_dragon3.gif'),
         });
@@ -475,6 +625,7 @@ export class DSPlayGame extends Component {
         this.setState({dragon: require('../Assets/Images/Dragon/dragon3.gif')});
       }, 3000);
     }
+<<<<<<< HEAD
 
     // Enable Attack Button & Update Dragon HP after 3 seconds
     setTimeout(() => {
@@ -567,6 +718,84 @@ export class DSPlayGame extends Component {
       setTimeout(() => {
         this.setState({dragon: require('../Assets/Images/Dragon/dragon3.gif')});
       }, 3000);
+=======
+    // Update HP bar and disabling Attack button temporarily
+    switch (attackSequence) {
+      case 1:
+        setTimeout(() => {
+          this.setState({
+            hpbar: require('../Assets/Images/Dragon/dragonhp_2.png'),
+            disabled: false,
+            sword: require('../Assets/Images/attackbutton.png'),
+          });
+        }, 2000);
+        break;
+
+      case 2:
+        setTimeout(() => {
+          this.setState({
+            hpbar: require('../Assets/Images/Dragon/dragonhp_3.png'),
+            disabled: false,
+            sword: require('../Assets/Images/attackbutton.png'),
+          });
+        }, 2000);
+        break;
+
+      case 3:
+        setTimeout(() => {
+          this.setState({
+            hpbar: require('../Assets/Images/Dragon/dragonhp_4.png'),
+          });
+        }, 2000);
+
+        switch (this.state.Logic) {
+          case 0:
+            this.state.coins = 0;
+            break;
+          case 1:
+            this.state.coins = 10;
+            break;
+          case 2:
+            this.state.coins = 20;
+            break;
+          case 3:
+            this.state.coins = 30;
+            break;
+          case 4:
+            this.state.coins = 40;
+            break;
+          case 5:
+            this.state.coins = 50;
+            break;
+          case 6:
+            this.state.coins = 100;
+            break;
+        }
+
+        switch (this.state.Logic) {
+          case 0:
+            // Show Lose board
+            setTimeout(() => {
+              this.setState({
+                loseBoard: true,
+                totalCoins: this.state.coins,
+              });
+            }, 4000);
+            break;
+          default:
+            this.state.roundCoins = this.state.coins;
+            // Show Scoreboard
+            setTimeout(() => {
+              this.setState({
+                scoreBoard: true,
+                // scoreBoard: false,
+                totalCoins: this.state.coins,
+              });
+            }, 4000);
+            break;
+        }
+        break;
+>>>>>>> 2c7faab (Code refactor on score limiter)
     }
 
     // Compute Coin Rewards based on total points
@@ -659,6 +888,7 @@ export class DSPlayGame extends Component {
   playAgain = () => {
     var randomDragon = getRandomDragon();
     this.setState({
+      Logic: getRandomLogic(),
       dragoncount: randomDragon,
       dragon: getDragonImage(randomDragon),
       disabled: false,
@@ -873,6 +1103,27 @@ export class DSPlayGame extends Component {
               </TouchableOpacity>
             </View>
           </View>
+<<<<<<< HEAD
+=======
+
+          {/* Loseboard (Modal) */}
+          <Loseboard
+            nav={this.props.navigation}
+            visible={this.state.loseBoard}
+            totalScore={this.state.totalScore}
+            playAgain={this.PlayAgain}
+            roundCoins={this.state.roundCoins}
+          />
+
+          {/* Scoreboard (Modal) */}
+          <Scoreboard
+            nav={this.props.navigation}
+            visible={this.state.scoreBoard}
+            totalScore={this.state.totalScore}
+            playAgain={this.PlayAgain}
+            roundCoins={this.state.roundCoins}
+          />
+>>>>>>> 2c7faab (Code refactor on score limiter)
         </View>
       </ImageBackground>
     );

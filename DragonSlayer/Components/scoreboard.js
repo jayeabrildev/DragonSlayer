@@ -12,14 +12,15 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
 import {BlurView} from '@react-native-community/blur';
+
 const scoreboard = props => {
   return (
     <Modal transparent={true} visible={props.visible}>
-      <BlurView style={styles.absolute} blurType="light" blurAmount={1}>
+      <BlurView style={styles.absolute} blurType="light" blurAmount={10}>
         <View style={styles.container}>
           <View style={styles.modalBgContainer}>
+            {/* Background Image */}
             <ImageBackground
               source={require('../Assets/Images/Background/BG_modal_victory.png')}
               style={styles.modalBackgroundImage}>
@@ -42,7 +43,7 @@ const scoreboard = props => {
                     {props.totalScore}
                   </Text>
                 </View>
-                {/* ------------- */}
+
                 <View style={styles.modalButtonSpace}>
                   <View style={styles.modalButtonSpace1}>
                     <TouchableOpacity onPress={props.playAgain}>

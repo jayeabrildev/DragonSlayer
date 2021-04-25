@@ -12,66 +12,65 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
+import {BlurView} from '@react-native-community/blur';
 
 const loseboard = props => {
   return (
     <Modal transparent={true} visible={props.visible}>
-      <View style={styles.container}>
-        <View style={styles.modalBgContainer}>
-          <ImageBackground
-          //-------------I N S E R T  B A C K G R O U N D 
-            source={require('../Assets/Images/Background/BG_modal_lose.png')}
-            style={styles.modalBackgroundImage}>
-            <View style={styles.modalInside}>
-              <View style={styles.modalScoreNum}>
-          
-              </View>
+      <BlurView style={styles.absolute} blurType="light" blurAmount={10}>
+        <View style={styles.container}>
+          <View style={styles.modalBgContainer}>
+            {/* Background Image */}
+            <ImageBackground
+              source={require('../Assets/Images/Background/BG_modal_lose.png')}
+              style={styles.modalBackgroundImage}>
+              <View style={styles.modalInside}>
+                <View style={styles.modalScoreNum}></View>
 
-              <View style={styles.modalScoreYS}>
-                <Text style={[styles.modalScoreText, styles.modalScoreText1]}>
-                  DEFEAT
-                </Text>
-       
-              </View>
-             
-              <View style={styles.modalScoreNum2}>
+                {/* Text: Defeat */}
+                <View style={styles.modalScoreYS}>
+                  <Text style={[styles.modalScoreText, styles.modalScoreText1]}>
+                    DEFEAT
+                  </Text>
+                </View>
+
+                {/* Text: Damage */}
+                <View style={styles.modalScoreNum2}>
                   <Text style={[styles.modalScoreText, styles.modalScoreText3]}>
-                  Your Score:
+                    Damage:
                   </Text>
 
+                  {/* Text: Damage Value */}
                   <Text style={[styles.modalScoreText, styles.modalScoreText2]}>
                     {props.totalScore}
                   </Text>
-              </View>
-              {/* ------------- */}
-              <View style={styles.modalButtonSpace}>
-                <View style={styles.modalButtonSpace1}>
-                  <TouchableOpacity onPress={props.playAgain}>
-                    <Image
-                      source={require('../Assets/Images/playagainbutton.png')}
-                      style={styles.modalButton}
-                    />
-                  </TouchableOpacity>
                 </View>
-                <View style={styles.modalButtonSpace2}>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('DS_Homescreen')}>
-                    <Image
-                      source={require('../Assets/Images/quitbutton.png')}
-                      style={styles.modalButton}
-                    />
-                  </TouchableOpacity>
+
+                <View style={styles.modalButtonSpace}>
+                  <View style={styles.modalButtonSpace1}>
+                    <TouchableOpacity onPress={props.playAgain}>
+                      <Image
+                        source={require('../Assets/Images/playagainbutton.png')}
+                        style={styles.modalButton}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.modalButtonSpace2}>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('DS_Homescreen')}>
+                      <Image
+                        source={require('../Assets/Images/quitbutton.png')}
+                        style={styles.modalButton}
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
-            </View>
-          </ImageBackground>
+            </ImageBackground>
+          </View>
         </View>
-      </View>
+      </BlurView>
     </Modal>
-
-
-    
   );
 };
 export default loseboard;
@@ -86,8 +85,9 @@ const styles = StyleSheet.create({
   },
   modalBgContainer: {
     flex: 1,
-    margin: wp('7.5%'),
-    paddingVertical: wp('7.5%'),
+    paddingVertical: hp('10%'),
+    paddingHorizontal: wp('7%'),
+    backgroundColor: 'transparent',
   },
   modalInside: {
     flex: 1,
@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
     flex: 0.55,
     alignItems: 'center',
     paddingTop: hp('1'),
-   
   },
   modalScoreText2: {
     fontSize: hp('9%'),
@@ -140,12 +139,12 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: hp('-0.3%'), height: hp('0.2%')},
     textShadowRadius: hp('0.2%'),
     color: '#f0a66e',
-    textAlign:'center',
-    paddingTop: hp('2%'), 
+    textAlign: 'center',
+    paddingTop: hp('2%'),
     fontSize: hp('3%'),
   },
   modalButtonSpace: {
-    marginTop:10,
+    marginTop: 10,
     flex: 1.2,
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -164,5 +163,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: hp('6%'),
     width: hp('22%'),
+  },
+  absolute: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 });
