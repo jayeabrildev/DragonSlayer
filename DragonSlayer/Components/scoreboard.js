@@ -27,7 +27,7 @@ const scoreboard = props => {
               <View style={styles.modalInside}>
                 <View style={styles.rewardsArea}>
                   <Image
-                    source={require('../Assets/Images/coin.png')}
+                    source={require('../Assets/Images/coin_peso.png')}
                     style={styles.coinReward}
                   />
                   <Text style={styles.coinValue}>{props.roundCoins}</Text>
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
 
   // Coin Area
   coinReward: {
-    width: 25,
+    width: 30,
     height: 30,
     resizeMode: 'cover',
     marginTop: 5,
