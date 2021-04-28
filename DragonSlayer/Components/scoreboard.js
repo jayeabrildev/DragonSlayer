@@ -25,7 +25,11 @@ const scoreboard = props => {
               source={require('../Assets/Images/Background/BG_modal_victory.png')}
               style={styles.modalBackgroundImage}>
               <View style={styles.modalInside}>
+                <Text style={styles.coinValue}>Rewards</Text>
                 <View style={styles.rewardsArea}>
+                  <Text style={[styles.rewardsHeader, {fontSize: 30}]}>
+                    Coins
+                  </Text>
                   <Image
                     source={require('../Assets/Images/coin_peso.png')}
                     style={styles.coinReward}
@@ -33,9 +37,20 @@ const scoreboard = props => {
                   <Text style={styles.coinValue}>{props.roundCoins}</Text>
                 </View>
 
+                <View style={styles.rewardsArea}>
+                  <Text style={[styles.rewardsHeader, {fontSize: 30}]}>
+                    Bonus
+                  </Text>
+                  <Image
+                    source={require('../Assets/Images/coin_peso.png')}
+                    style={styles.coinReward}
+                  />
+                  <Text style={styles.coinValue}>{props.bonusCoins}</Text>
+                </View>
+
                 <View style={styles.modalScoreYS}>
                   <Text style={[styles.modalScoreText, styles.modalScoreText1]}>
-                    Your Score:
+                    Damage:
                   </Text>
                 </View>
                 <View style={styles.modalScoreNum}>
@@ -92,18 +107,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 150,
   },
 
   // Coin Area
   coinReward: {
-    width: 30,
-    height: 30,
+    width: 35,
+    height: 35,
     resizeMode: 'cover',
-    marginTop: 5,
   },
 
   coinValue: {
-    fontSize: 30,
+    fontSize: 35,
     fontFamily: 'Bombardment',
     textShadowColor: 'rgb(191,104,80)',
     textShadowOffset: {width: hp('-0.3%'), height: hp('0.4%')},
@@ -112,18 +127,27 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
+  rewardsHeader: {
+    fontFamily: 'Bombardment',
+    textShadowColor: 'rgb(191,104,80)',
+    textShadowOffset: {width: hp('-0.3%'), height: hp('0.4%')},
+    textShadowRadius: hp('0.2%'),
+    color: '#f0a66e',
+    marginRight: 20,
+  },
+
   rewardsArea: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginTop: 150,
+    marginTop: 10,
   },
 
   modalScoreYS: {
     flex: 0.3,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginTop: 30,
+    marginTop: 20,
   },
   modalScoreText: {
     fontFamily: 'Bombardment',
@@ -133,14 +157,15 @@ const styles = StyleSheet.create({
     color: '#f0a66e',
   },
   modalScoreText1: {
-    fontSize: hp('5%'),
+    fontSize: 20,
   },
   modalScoreNum: {
     flex: 0.55,
     alignItems: 'center',
   },
   modalScoreText2: {
-    fontSize: hp('9%'),
+    marginTop: 15,
+    fontSize: 40,
   },
   modalButtonSpace: {
     flex: 1.2,
