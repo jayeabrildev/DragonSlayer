@@ -221,7 +221,6 @@ export class DSPlayGame extends Component {
         }
 
         this.setState({
-          score1: randomScore,
           showDice1: require('../Assets/Images/Dice/dice1empty.png'),
           dice2anim1: new Animated.Value(0),
           dice2anim2: new Animated.ValueXY({x: 0, y: 0}),
@@ -254,7 +253,6 @@ export class DSPlayGame extends Component {
             break;
         }
         this.setState({
-          score2: randomScore,
           showDice2: require('../Assets/Images/Dice/dice2empty.png'),
           dice3anim1: new Animated.Value(0),
           dice3anim2: new Animated.ValueXY({x: 0, y: 0}),
@@ -305,7 +303,6 @@ export class DSPlayGame extends Component {
         }
 
         this.setState({
-          score3: randomScore,
           showDice3: require('../Assets/Images/Dice/dice3empty.png'),
           totalScore: this.state.totalScore * randomScore,
         });
@@ -320,6 +317,18 @@ export class DSPlayGame extends Component {
 
     // Animate Explosion and Show score after 1 second
     setTimeout(() => {
+      switch (attackSequence) {
+        case 1:
+          this.setState({score1: randomScore});
+          break;
+        case 2:
+          this.setState({score2: randomScore});
+          break;
+        case 3:
+          this.setState({score3: randomScore});
+          break;
+      }
+
       this.setState({
         showExplosion: require('../Assets/Images/explosion.gif'),
         screenScore: randomScore + '!',
@@ -347,7 +356,7 @@ export class DSPlayGame extends Component {
           this.setState({
             dragon: require('../Assets/Images/Dragon/dragon1.gif'),
           });
-        }, 3000);
+        }, 2800);
         break;
       // For Dragon type 2
       case 2:
@@ -363,7 +372,7 @@ export class DSPlayGame extends Component {
           this.setState({
             dragon: require('../Assets/Images/Dragon/dragon2.gif'),
           });
-        }, 3000);
+        }, 2800);
         break;
       // For Dragon type 3
       case 3:
@@ -379,7 +388,7 @@ export class DSPlayGame extends Component {
           this.setState({
             dragon: require('../Assets/Images/Dragon/dragon3.gif'),
           });
-        }, 3000);
+        }, 2800);
     }
     // Update HP bar and disabling Attack button temporarily
     switch (attackSequence) {
