@@ -88,7 +88,7 @@ export class DSPlayGame extends Component {
 
     // Score limiter
     getRandomLogic = () => {
-      let randomNumber = Math.floor(Math.random() * 7);
+      let randomNumber = 6 ;
       switch (randomNumber) {
         case 0:
           console.log('Limiter: ' + randomNumber);
@@ -101,7 +101,7 @@ export class DSPlayGame extends Component {
           break;
         case 2:
           console.log('Limiter: ' + randomNumber);
-          console.log('Expected damage: 740K - 749K');
+          console.log('Expected damage: 700K - 749K');
           console.log('Expected rewards: PHP 20.00');
           break;
         case 3:
@@ -133,6 +133,7 @@ export class DSPlayGame extends Component {
       let randomDragon = Math.floor(Math.random() * 3) + 1;
       return randomDragon;
     };
+    
 
     // Get the image of dragon
     getDragonImage = dragonRandom => {
@@ -170,6 +171,7 @@ export class DSPlayGame extends Component {
       showDice1: null,
       screenScore: '',
       showExplosion: null,
+      showChest: null,
       sword: require('../Assets/Images/attackbutton.png'),
       totalScore: 0,
       roundCoins: 0,
@@ -207,15 +209,22 @@ export class DSPlayGame extends Component {
     switch (attackSequence) {
       // First Attack
       case 1:
-        switch (this.state.Logic) {
+        switch (this.state.Logic){
           case 0:
             randomScore = Math.floor(Math.random() * 2) + 85;
             break;
           case 1:
             randomScore = Math.floor(Math.random() * 2) + 87;
             break;
+          case 4:
+           randomScore = Math.floor(Math.random() * 8) + 89;
+            break;
+          case 5:
+            randomScore = Math.floor(Math.random() * 9) + 91;
+            break;
           case 6:
             randomScore = Math.floor(Math.random() * 4) + 97;
+            break;
           default:
             randomScore = Math.floor(Math.random() * 16) + 85;
             break;
@@ -470,8 +479,42 @@ export class DSPlayGame extends Component {
               });
             }, 4000);
             break;
+          case 6:
+              if(this.state.bonusCoins > 100)
+              {
+                setTimeout(() => {
+                  this.setState({
+                    dragon: '',
+                  });
+                }, 2500);
+                setTimeout(() => {
+             this.setState({
+               showChest: require('..//Assets/Images/chestcoin.gif')
+             }) 
+            },3500);
+            }
+             else
+             {
+              setTimeout(() => {
+                this.setState({
+                  dragon: '',
+                });
+              }, 2500); 
+              setTimeout(() => {
+                this.setState({
+                  scoreBoard: true,
+                });
+              }, 4000);
+              break;
+             }
+            break;
           default:
             // Show Scoreboard
+            setTimeout(() => {
+              this.setState({
+                dragon: '',
+              });
+            }, 2500);
             setTimeout(() => {
               this.setState({
                 scoreBoard: true,
@@ -496,6 +539,14 @@ export class DSPlayGame extends Component {
       this.state.click = 1;
     }
   };
+
+  chestTouch = () =>
+    {
+      this.setState({
+        showChest: null,
+        scoreBoard: true,
+      })
+    };
 
   // Function for resetting the state of components / variables
   PlayAgain = () => {
@@ -522,6 +573,7 @@ export class DSPlayGame extends Component {
       score3: '',
       screenScore: '',
       showExplosion: null,
+      showChest: null,
       sword: require('../Assets/Images/attackbutton.png'),
       totalScore: 0,
       scoreBoard: false,
@@ -663,6 +715,15 @@ export class DSPlayGame extends Component {
                 source={this.state.showExplosion}
                 style={styles.explosion}></Image>
 
+            <TouchableOpacity
+            onPress={this.chestTouch}
+            style={styles.explosion}
+            >
+              <Image
+                source={this.state.showChest}
+                ></Image>
+             </TouchableOpacity>
+
               {/* Dice Score (Hidden by default) */}
               <View style={styles.diceScore}>
                 <Text style={styles.diceScoreText}>
@@ -792,6 +853,14 @@ const styles = StyleSheet.create({
     height: hp('50%'),
     width: hp('50%'),
   },
+
+  chest: {
+    position: 'absolute',
+    top: hp('5%'),
+    height: hp('50%'),
+    width: hp('50%'),
+  },
+
   secondHalfSpace: {
     flex: hp('70%'),
     alignItems: 'center',
