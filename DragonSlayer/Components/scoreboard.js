@@ -50,7 +50,7 @@ const scoreboard = props => {
 
                 <View style={styles.modalScoreYS}>
                   <Text style={[styles.modalScoreText, styles.modalScoreText1]}>
-                    Damage:
+                    Total Damage:
                   </Text>
                 </View>
                 <View style={styles.modalScoreNum}>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 150,
+    paddingTop: 120,
   },
 
   // Coin Area
@@ -119,20 +119,14 @@ const styles = StyleSheet.create({
 
   coinValue: {
     fontSize: 35,
-    fontFamily: 'Bombardment',
-    textShadowColor: 'rgb(191,104,80)',
-    textShadowOffset: {width: hp('-0.3%'), height: hp('0.4%')},
+    fontFamily: 'Voltaire',
     textShadowRadius: hp('0.2%'),
-    color: '#f0a66e',
     marginLeft: 10,
   },
 
   rewardsHeader: {
-    fontFamily: 'Bombardment',
-    textShadowColor: 'rgb(191,104,80)',
-    textShadowOffset: {width: hp('-0.3%'), height: hp('0.4%')},
+    fontFamily: 'Voltaire',
     textShadowRadius: hp('0.2%'),
-    color: '#f0a66e',
     marginRight: 20,
   },
 
@@ -147,14 +141,12 @@ const styles = StyleSheet.create({
     flex: 0.3,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginTop: 20,
+    marginTop: 12,
   },
   modalScoreText: {
-    fontFamily: 'Bombardment',
-    textShadowColor: 'rgb(191,104,80)',
-    textShadowOffset: {width: hp('-0.3%'), height: hp('0.4%')},
+    fontFamily: 'Voltaire',
     textShadowRadius: hp('0.2%'),
-    color: '#f0a66e',
+   
   },
   modalScoreText1: {
     fontSize: 20,
@@ -162,6 +154,7 @@ const styles = StyleSheet.create({
   modalScoreNum: {
     flex: 0.55,
     alignItems: 'center',
+    marginTop: -10,
   },
   modalScoreText2: {
     marginTop: 15,
@@ -171,7 +164,7 @@ const styles = StyleSheet.create({
     flex: 1.2,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 50,
+    paddingTop: 30,
   },
   modalButtonSpace1: {
     justifyContent: 'center',

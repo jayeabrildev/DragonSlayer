@@ -23,11 +23,15 @@ const styles = StyleSheet.create({
   dragon: {
     height: hp('50%'),
     width: hp('50%'),
+    marginTop: ('-3%'),
     resizeMode: 'contain',
   },
   dragonHP: {
-    height: hp('10%'),
-    width: hp('45%'),
+    height: hp('8%'),
+    width: hp('40%'),
+    alignSelf: 'center',
     resizeMode: 'cover',
+    marginTop:'-16%'
+
   },
 });

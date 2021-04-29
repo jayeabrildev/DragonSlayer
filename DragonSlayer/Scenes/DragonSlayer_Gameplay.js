@@ -752,7 +752,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
-    top: hp('0.8%'),
+    top: hp('-3%'),
   },
   dice: {
     height: hp('15%'),
@@ -769,12 +769,13 @@ const styles = StyleSheet.create({
     fontFamily: 'TitanOne-Regular',
     color: '#fff',
     fontSize: 22,
-    top: hp('7%'),
+    top: hp('3%'),
   },
   diceScore: {
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: '20%'
   },
   diceScoreText: {
     fontFamily: 'TitanOne-Regular',
@@ -812,5 +813,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: hp('7.5%'),
     width: hp('45%'),
+    marginTop:'0%',
   },
 });

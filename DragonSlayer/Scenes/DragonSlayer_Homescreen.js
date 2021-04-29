@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   dslogo: {
-    marginTop: '80%',
+    marginTop: '100%',
     height: hp('215%'),
     width: wp('215%'),
     marginLeft: '-13%',
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     height: hp('18%'),
     width: wp('80%'),
     alignSelf: 'center',
-    marginTop: '55%',
+    marginTop: '75%',
   },
   buttonHow: {
     borderRadius: 2.5,
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     height: hp('100%'),
     width: wp('65%'),
     alignSelf: 'center',
-    marginTop: '-60%',
+    marginTop: '-70%',
   },
   buttonBack: {
     borderRadius: 2.5,

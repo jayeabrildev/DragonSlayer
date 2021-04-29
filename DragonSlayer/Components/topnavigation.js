@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
     height: hp('3.5%'),
     width: hp('4%'),
     resizeMode: 'contain',
+    marginTop: '10%',
+    marginLeft: '15%',
   },
 
   upperScoreText: {

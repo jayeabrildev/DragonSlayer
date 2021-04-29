@@ -37,7 +37,7 @@ const loseboard = props => {
                 {/* Text: Damage */}
                 <View style={styles.modalScoreNum2}>
                   <Text style={[styles.modalScoreText, styles.modalScoreText3]}>
-                    Damage:
+                    Total Damage:
                   </Text>
 
                   {/* Text: Damage Value */}
@@ -104,15 +104,12 @@ const styles = StyleSheet.create({
     flex: 0.3,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginTop: 80,
+    marginTop: 75,
   },
   modalScoreText: {
-    fontFamily: 'Bombardment',
-    textShadowColor: 'rgb(191,104,80)',
-    textShadowOffset: {width: hp('-0.3%'), height: hp('0.4%')},
+    fontFamily: 'Voltaire',
     textShadowRadius: hp('0.2%'),
-    color: '#f0a66e',
-    paddingTop: hp('1%'),
+    paddingTop: hp('0%'),
   },
   modalScoreText1: {
     fontSize: hp('7%'),
@@ -131,14 +128,11 @@ const styles = StyleSheet.create({
     paddingTop: hp('1'),
   },
   modalScoreText2: {
-    fontSize: hp('9%'),
+    fontSize: hp('5%'),
   },
   modalText: {
-    fontFamily: 'VarelaRound-Regular',
-    textShadowColor: 'rgb(191,104,80)',
-    textShadowOffset: {width: hp('-0.3%'), height: hp('0.2%')},
+    fontFamily: 'Voltaire',
     textShadowRadius: hp('0.2%'),
-    color: '#f0a66e',
     textAlign: 'center',
     paddingTop: hp('2%'),
     fontSize: hp('3%'),
