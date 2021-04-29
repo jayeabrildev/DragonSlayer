@@ -88,7 +88,7 @@ export class DSPlayGame extends Component {
 
     // Score limiter
     getRandomLogic = () => {
-      let randomNumber = 6 ;
+      let randomNumber = Math.floor(Math.random() * 7) ;
       switch (randomNumber) {
         case 0:
           console.log('Limiter: ' + randomNumber);
