@@ -314,15 +314,37 @@ export class DSPlayGame extends Component {
 
             if (bonus >= 0 && bonus <= 50) {
               this.setState({bonusCoins: 100});
+                setTimeout(() => {
+                this.setState({
+                scoreBoard: true,
+                });}, 4000);
             } else if (bonus >= 51 && bonus <= 75) {
               this.setState({bonusCoins: 1000});
+                setTimeout(() => {
+                this.setState({
+                showChest: 
+                require('..//Assets/Images/chestcoin.gif')})},3500);
             } else if (bonus >= 76 && bonus <= 90) {
               this.setState({bonusCoins: 10000});
+                setTimeout(() => {
+                this.setState({
+                showChest: 
+                require('..//Assets/Images/chestcoin.gif')})},3500);
             } else if (bonus >= 91 && bonus <= 97) {
               this.setState({bonusCoins: 100000});
+                setTimeout(() => {
+                this.setState({
+                showChest: 
+                require('..//Assets/Images/chestcoin.gif')})},3500);
             } else if (bonus >= 98 && bonus <= 100) {
               this.setState({bonusCoins: 1000000});
+                setTimeout(() => {
+                this.setState({
+                showChest: 
+                require('..//Assets/Images/chestcoin.gif')})},3500);
             }
+
+            
 
             break;
         }
@@ -480,41 +502,10 @@ export class DSPlayGame extends Component {
             }, 4000);
             break;
           case 6:
-              if(this.state.bonusCoins > 100)
-              {
-                setTimeout(() => {
-                  this.setState({
-                    dragon: '',
-                  });
-                }, 2500);
-                setTimeout(() => {
-             this.setState({
-               showChest: require('..//Assets/Images/chestcoin.gif')
-             }) 
-            },3500);
-            }
-             else
-             {
-              setTimeout(() => {
-                this.setState({
-                  dragon: '',
-                });
-              }, 2500); 
-              setTimeout(() => {
-                this.setState({
-                  scoreBoard: true,
-                });
-              }, 4000);
-              break;
-             }
+          console.log("bonus chance");
             break;
           default:
             // Show Scoreboard
-            setTimeout(() => {
-              this.setState({
-                dragon: '',
-              });
-            }, 2500);
             setTimeout(() => {
               this.setState({
                 scoreBoard: true,
