@@ -14,6 +14,9 @@ import {
 } from 'react-native-responsive-screen';
 import {BlurView} from '@react-native-community/blur';
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 const loseboard = props => {
   return (
     <Modal transparent={true} visible={props.visible}>
@@ -42,7 +45,7 @@ const loseboard = props => {
 
                   {/* Text: Damage Value */}
                   <Text style={[styles.modalScoreText, styles.modalScoreText2]}>
-                    {props.totalScore}
+                    {numberWithCommas(props.totalScore)}
                   </Text>
                 </View>
 
@@ -57,7 +60,7 @@ const loseboard = props => {
                   </View>
                   <View style={styles.modalButtonSpace2}>
                     <TouchableOpacity
-                      onPress={() => navigation.navigate('DS_Homescreen')}>
+                      onPress={() => props.nav.navigate('DS_Homescreen')}>
                       <Image
                         source={require('../Assets/Images/quitbutton.png')}
                         style={styles.modalButton}

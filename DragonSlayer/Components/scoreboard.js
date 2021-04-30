@@ -3,7 +3,6 @@ import {Modal, View, Image} from 'react-native';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {Text, TouchableOpacity} from 'react-native';
 import {BlurView} from '@react-native-community/blur';
-import NumberFormat from 'react-number-format';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
