@@ -505,13 +505,13 @@ export class DSPlayGame extends Component {
           console.log("bonus chance");       
           setTimeout(() => {
             this.setState({
-            dragon: ''})},3300);
+            dragon: ''})},2700);
             break;
           default:
             // Show Scoreboard
             setTimeout(() => {
               this.setState({
-              dragon: ''})},3300);
+              dragon: ''})},2700);
             setTimeout(() => {
               this.setState({
                 scoreBoard: true,
@@ -571,6 +571,7 @@ export class DSPlayGame extends Component {
       screenScore: '',
       showExplosion: null,
       showChest: null,
+      bonusCoins: 0,
       sword: require('../Assets/Images/attackbutton.png'),
       totalScore: 0,
       scoreBoard: false,
