@@ -11,6 +11,9 @@ import Sound from 'react-native-sound';
 import spin from '../Assets/Audio/sfx_rolldice.mp3';
 import dspg from '../Assets/Audio/bgmusic_gameplay.mp3';
 import slsh from '../Assets/Audio/sfx_slash.mp3';
+import sln from '../Assets/Audio/slain_dragon.mp3';
+import slainB from '../Assets/Audio/bonus_slain.mp3';
+import defeat from '../Assets/Audio/defeat.mp3';
 
 // Imported Components
 import TopNavigation from '../Components/topnavigation';
@@ -50,6 +53,48 @@ var spineffect = new Sound(spin, Sound.MAIN_BUNDLE, error => {
 
 // Variable: Slash SFX
 var slash = new Sound(slsh, Sound.MAIN_BUNDLE, error => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+  console.log(
+    'duration in seconds: ' +
+      bgsound.getDuration() +
+      'number of channels: ' +
+      bgsound.getNumberOfChannels(),
+  );
+});
+
+// Variable: Slash SFX
+var bslain = new Sound(slainB, Sound.MAIN_BUNDLE, error => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+  console.log(
+    'duration in seconds: ' +
+      bgsound.getDuration() +
+      'number of channels: ' +
+      bgsound.getNumberOfChannels(),
+  );
+});
+
+// Variable: Slash SFX
+var slain = new Sound(sln, Sound.MAIN_BUNDLE, error => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+  console.log(
+    'duration in seconds: ' +
+      bgsound.getDuration() +
+      'number of channels: ' +
+      bgsound.getNumberOfChannels(),
+  );
+});
+
+// Variable: Slash SFX
+var lose = new Sound(defeat, Sound.MAIN_BUNDLE, error => {
   if (error) {
     console.log('failed to load the sound', error);
     return;
@@ -149,6 +194,7 @@ export class DSPlayGame extends Component {
       dragoncount: randomDragon,
       dragon: getDragonImage(randomDragon),
       disabled: false,
+      chestE: true,
       dice1anim1: new Animated.Value(0),
       dice1anim2: new Animated.ValueXY({x: 0, y: 0}),
       dice2anim1: new Animated.Value(0),
@@ -311,34 +357,64 @@ export class DSPlayGame extends Component {
                   scoreBoard: true,
                 });
               }, 4000);
+              setTimeout(() => {
+                slain.play();
+                bgsound.stop();
+              }, 3200);
+              break;
             } else if (bonus >= 51 && bonus <= 75) {
               this.setState({bonusCoins: 1000});
               setTimeout(() => {
                 this.setState({
+                  chestE: false,
                   showChest: require('..//Assets/Images/chestcoin.gif'),
                 });
               }, 3500);
+              setTimeout(() => {
+                bslain.play();
+                bgsound.stop();
+              }, 3300);
+              break;
             } else if (bonus >= 76 && bonus <= 90) {
               this.setState({bonusCoins: 10000});
               setTimeout(() => {
                 this.setState({
+                  chestE: false,
                   showChest: require('..//Assets/Images/chestcoin.gif'),
                 });
               }, 3500);
+
+              setTimeout(() => {
+                bslain.play();
+                bgsound.stop();
+              }, 3300);
+              break;
             } else if (bonus >= 91 && bonus <= 97) {
               this.setState({bonusCoins: 100000});
               setTimeout(() => {
                 this.setState({
+                  chestE: false,
                   showChest: require('..//Assets/Images/chestcoin.gif'),
                 });
               }, 3500);
+              setTimeout(() => {
+                bslain.play();
+                bgsound.stop();
+              }, 3300);
+              break;
             } else if (bonus >= 98 && bonus <= 100) {
               this.setState({bonusCoins: 1000000});
               setTimeout(() => {
                 this.setState({
+                  chestE: false,
                   showChest: require('..//Assets/Images/chestcoin.gif'),
                 });
               }, 3500);
+              setTimeout(() => {
+                bslain.play();
+                bgsound.stop();
+              }, 3300);
+              break;
             }
 
             break;
@@ -495,22 +571,35 @@ export class DSPlayGame extends Component {
                 loseBoard: true,
               });
             }, 4000);
+            // disable bgsound
+            //enable defeat sound
+            setTimeout(() => {
+              bgsound.stop();
+              lose.play();
+            }, 3200);
+            break;
             break;
           case 6:
             console.log('bonus chance');
             setTimeout(() => {
               this.setState({
-                dragon: '',
+                dragon: null,
               });
-            }, 2700);
+            }, 2800);
             break;
           default:
             // Show Scoreboard
             setTimeout(() => {
+              slain.play();
+              bgsound.stop();
+            }, 3200);
+            // disable bgsound
+            //enable victory sound
+            setTimeout(() => {
               this.setState({
-                dragon: '',
+                dragon: null,
               });
-            }, 2700);
+            }, 2800);
             setTimeout(() => {
               this.setState({
                 scoreBoard: true,
@@ -576,6 +665,9 @@ export class DSPlayGame extends Component {
       loseBoard: false,
       hpbar: require('../Assets/Images/Dragon/dragonhp_1.png'),
     });
+    bgsound.play();
+    slain.stop();
+    bslain.stop();
   };
 
   render() {
@@ -713,7 +805,8 @@ export class DSPlayGame extends Component {
 
               <TouchableOpacity
                 onPress={this.chestTouch}
-                style={styles.explosion}>
+                style={styles.explosion}
+                disabled={this.state.chestE}>
                 <Image source={this.state.showChest}></Image>
               </TouchableOpacity>
 
