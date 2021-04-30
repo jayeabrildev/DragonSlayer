@@ -1,14 +1,7 @@
 import React, {Component} from 'react';
-import {
-  ImageBackground,
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  Animated,
-  TouchableOpacity,
-  BackHandler,
-} from 'react-native';
+import {ImageBackground, Text, View} from 'react-native';
+import {StyleSheet, Image, Animated} from 'react-native';
+import {TouchableOpacity, BackHandler} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -88,7 +81,7 @@ export class DSPlayGame extends Component {
 
     // Score limiter
     getRandomLogic = () => {
-      let randomNumber = Math.floor(Math.random() * 7 ) ;
+      let randomNumber = Math.floor(Math.random() * 7);
       switch (randomNumber) {
         case 0:
           console.log('Limiter: ' + randomNumber);
@@ -133,7 +126,6 @@ export class DSPlayGame extends Component {
       let randomDragon = Math.floor(Math.random() * 3) + 1;
       return randomDragon;
     };
-    
 
     // Get the image of dragon
     getDragonImage = dragonRandom => {
@@ -209,7 +201,7 @@ export class DSPlayGame extends Component {
     switch (attackSequence) {
       // First Attack
       case 1:
-        switch (this.state.Logic){
+        switch (this.state.Logic) {
           case 0:
             randomScore = Math.floor(Math.random() * 2) + 85;
             break;
@@ -217,7 +209,7 @@ export class DSPlayGame extends Component {
             randomScore = Math.floor(Math.random() * 2) + 87;
             break;
           case 4:
-           randomScore = Math.floor(Math.random() * 8) + 89;
+            randomScore = Math.floor(Math.random() * 8) + 89;
             break;
           case 5:
             randomScore = Math.floor(Math.random() * 9) + 91;
@@ -314,37 +306,40 @@ export class DSPlayGame extends Component {
 
             if (bonus >= 0 && bonus <= 50) {
               this.setState({bonusCoins: 100});
-                setTimeout(() => {
+              setTimeout(() => {
                 this.setState({
-                scoreBoard: true,
-                });}, 4000);
+                  scoreBoard: true,
+                });
+              }, 4000);
             } else if (bonus >= 51 && bonus <= 75) {
               this.setState({bonusCoins: 1000});
-                setTimeout(() => {
+              setTimeout(() => {
                 this.setState({
-                showChest: 
-                require('..//Assets/Images/chestcoin.gif')})},3500);
+                  showChest: require('..//Assets/Images/chestcoin.gif'),
+                });
+              }, 3500);
             } else if (bonus >= 76 && bonus <= 90) {
               this.setState({bonusCoins: 10000});
-                setTimeout(() => {
+              setTimeout(() => {
                 this.setState({
-                showChest: 
-                require('..//Assets/Images/chestcoin.gif')})},3500);
+                  showChest: require('..//Assets/Images/chestcoin.gif'),
+                });
+              }, 3500);
             } else if (bonus >= 91 && bonus <= 97) {
               this.setState({bonusCoins: 100000});
-                setTimeout(() => {
+              setTimeout(() => {
                 this.setState({
-                showChest: 
-                require('..//Assets/Images/chestcoin.gif')})},3500);
+                  showChest: require('..//Assets/Images/chestcoin.gif'),
+                });
+              }, 3500);
             } else if (bonus >= 98 && bonus <= 100) {
               this.setState({bonusCoins: 1000000});
-                setTimeout(() => {
+              setTimeout(() => {
                 this.setState({
-                showChest: 
-                require('..//Assets/Images/chestcoin.gif')})},3500);
+                  showChest: require('..//Assets/Images/chestcoin.gif'),
+                });
+              }, 3500);
             }
-
-            
 
             break;
         }
@@ -502,16 +497,20 @@ export class DSPlayGame extends Component {
             }, 4000);
             break;
           case 6:
-          console.log("bonus chance");       
-          setTimeout(() => {
-            this.setState({
-            dragon: ''})},2700);
+            console.log('bonus chance');
+            setTimeout(() => {
+              this.setState({
+                dragon: '',
+              });
+            }, 2700);
             break;
           default:
             // Show Scoreboard
             setTimeout(() => {
               this.setState({
-              dragon: ''})},2700);
+                dragon: '',
+              });
+            }, 2700);
             setTimeout(() => {
               this.setState({
                 scoreBoard: true,
@@ -537,13 +536,12 @@ export class DSPlayGame extends Component {
     }
   };
 
-  chestTouch = () =>
-    {
-      this.setState({
-        showChest: null,
-        scoreBoard: true,
-      })
-    };
+  chestTouch = () => {
+    this.setState({
+      showChest: null,
+      scoreBoard: true,
+    });
+  };
 
   // Function for resetting the state of components / variables
   PlayAgain = () => {
@@ -713,14 +711,11 @@ export class DSPlayGame extends Component {
                 source={this.state.showExplosion}
                 style={styles.explosion}></Image>
 
-            <TouchableOpacity
-            onPress={this.chestTouch}
-            style={styles.explosion}
-            >
-              <Image
-                source={this.state.showChest}
-                ></Image>
-             </TouchableOpacity>
+              <TouchableOpacity
+                onPress={this.chestTouch}
+                style={styles.explosion}>
+                <Image source={this.state.showChest}></Image>
+              </TouchableOpacity>
 
               {/* Dice Score (Hidden by default) */}
               <View style={styles.diceScore}>
@@ -834,7 +829,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '20%'
+    marginTop: '20%',
   },
   diceScoreText: {
     fontFamily: 'TitanOne-Regular',
@@ -880,6 +875,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: hp('7.5%'),
     width: hp('45%'),
-    marginTop:'0%',
+    marginTop: '0%',
   },
 });
