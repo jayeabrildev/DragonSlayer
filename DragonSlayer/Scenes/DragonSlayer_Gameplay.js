@@ -88,7 +88,7 @@ export class DSPlayGame extends Component {
 
     // Score limiter
     getRandomLogic = () => {
-      let randomNumber = Math.floor(Math.random() * 7) ;
+      let randomNumber = Math.floor(Math.random() * 7 ) ;
       switch (randomNumber) {
         case 0:
           console.log('Limiter: ' + randomNumber);
@@ -502,10 +502,16 @@ export class DSPlayGame extends Component {
             }, 4000);
             break;
           case 6:
-          console.log("bonus chance");
+          console.log("bonus chance");       
+          setTimeout(() => {
+            this.setState({
+            dragon: ''})},3300);
             break;
           default:
             // Show Scoreboard
+            setTimeout(() => {
+              this.setState({
+              dragon: ''})},3300);
             setTimeout(() => {
               this.setState({
                 scoreBoard: true,
