@@ -136,7 +136,7 @@ export class DSPlayGame extends Component {
 
     // Score limiter
     getRandomLogic = () => {
-      let randomNumber = Math.floor(Math.random() * 7 ) ;
+      let randomNumber = Math.floor(Math.random() *7) ;
       switch (randomNumber) {
         case 0:
           console.log('Limiter: ' + randomNumber);
@@ -366,11 +366,11 @@ export class DSPlayGame extends Component {
               this.setState({bonusCoins: 100});
                 setTimeout(() => {
                 this.setState({
-                scoreBoard: false,
+                scoreBoard: true,
                 });}, 4000);
-                setTimeout(() => {
-                  bgsound.stop();
+                setTimeout(() => {        
                   slain.play();
+                  bgsound.stop();
                   },3200);
                   break;
             } else if (bonus >= 51 && bonus <= 75) {
@@ -381,8 +381,8 @@ export class DSPlayGame extends Component {
                 showChest: 
                 require('..//Assets/Images/chestcoin.gif')})},3500);
                 setTimeout(() => {
-                  bgsound.stop();
                   bslain.play();
+                  bgsound.stop();
                   },3300);
                   break;
             } else if (bonus >= 76 && bonus <= 90) {
@@ -394,8 +394,8 @@ export class DSPlayGame extends Component {
                 require('..//Assets/Images/chestcoin.gif')})},3500);
                 
                 setTimeout(() => {
-                  bgsound.stop();
                   bslain.play();
+                  bgsound.stop();
                   },3300);
                   break;
             } else if (bonus >= 91 && bonus <= 97) {
@@ -406,8 +406,8 @@ export class DSPlayGame extends Component {
                 showChest: 
                 require('..//Assets/Images/chestcoin.gif')})},3500);
                 setTimeout(() => {
-                  bgsound.stop();
                   bslain.play();
+                  bgsound.stop();
                   },3300);
                   break;
             } else if (bonus >= 98 && bonus <= 100) {
@@ -418,8 +418,8 @@ export class DSPlayGame extends Component {
                 showChest: 
                 require('..//Assets/Images/chestcoin.gif')})},3500);
                 setTimeout(() => {
-                  bgsound.stop();
                   bslain.play();
+                      bgsound.stop();
                   },3300);
                   break;
             }
