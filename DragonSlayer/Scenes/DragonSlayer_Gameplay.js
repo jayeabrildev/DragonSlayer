@@ -169,6 +169,10 @@ export class DSPlayGame extends Component {
     // Generate a random dragon
     getRandomDragon = () => {
       let randomDragon = Math.floor(Math.random() * 3) + 1;
+    // Play background music
+    bgsound.setVolume(1);
+    bgsound.play();
+    bgsound.setNumberOfLoops(20);
       return randomDragon;
     };
 
@@ -359,6 +363,7 @@ export class DSPlayGame extends Component {
               }, 4000);
               setTimeout(() => {
                 slain.play();
+                bgsound.setNumberOfLoops(-1);
                 bgsound.stop();
               }, 3200);
               break;
@@ -372,6 +377,7 @@ export class DSPlayGame extends Component {
               }, 3500);
               setTimeout(() => {
                 bslain.play();
+                bgsound.setNumberOfLoops(-1);
                 bgsound.stop();
               }, 3300);
               break;
@@ -386,6 +392,7 @@ export class DSPlayGame extends Component {
 
               setTimeout(() => {
                 bslain.play();
+                bgsound.setNumberOfLoops(-1);
                 bgsound.stop();
               }, 3300);
               break;
@@ -399,6 +406,7 @@ export class DSPlayGame extends Component {
               }, 3500);
               setTimeout(() => {
                 bslain.play();
+                bgsound.setNumberOfLoops(-1);
                 bgsound.stop();
               }, 3300);
               break;
@@ -412,6 +420,7 @@ export class DSPlayGame extends Component {
               }, 3500);
               setTimeout(() => {
                 bslain.play();
+                bgsound.setNumberOfLoops(-1);
                 bgsound.stop();
               }, 3300);
               break;
@@ -575,6 +584,7 @@ export class DSPlayGame extends Component {
             //enable defeat sound
             setTimeout(() => {
               bgsound.stop();
+              bgsound.setNumberOfLoops(-1);
               lose.play();
             }, 3200);
             break;
@@ -591,6 +601,7 @@ export class DSPlayGame extends Component {
             // Show Scoreboard
             setTimeout(() => {
               slain.play();
+              bgsound.setNumberOfLoops(-1);
               bgsound.stop();
             }, 3200);
             // disable bgsound
@@ -671,10 +682,7 @@ export class DSPlayGame extends Component {
   };
 
   render() {
-    // Play background music
-    bgsound.setVolume(1);
-    bgsound.play();
-    bgsound.setNumberOfLoops(20);
+
 
     const rotateDice1 = this.state.dice1anim1.interpolate({
       inputRange: [0, 1],
