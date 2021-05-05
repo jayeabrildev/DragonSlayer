@@ -1,22 +1,21 @@
 import React from 'react';
-import {
-  Modal,
-  View,
-  Image,
-  StyleSheet,
-  ImageBackground,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {Modal, View, Image} from 'react-native';
+import {StyleSheet, ImageBackground} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
+import {BlurView} from '@react-native-community/blur';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {BlurView} from '@react-native-community/blur';
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 const scoreboard = props => {
   return (
     <Modal transparent={true} visible={props.visible}>
+      {/* Background Blur */}
       <BlurView style={styles.absolute} blurType="light" blurAmount={10}>
         <View style={styles.container}>
           <View style={styles.modalBgContainer}>
@@ -34,18 +33,9 @@ const scoreboard = props => {
                     source={require('../Assets/Images/coin_peso.png')}
                     style={styles.coinReward}
                   />
-                  <Text style={styles.coinValue}>{props.roundCoins}</Text>
-                </View>
-
-                <View style={styles.rewardsArea}>
-                  <Text style={[styles.rewardsHeader, {fontSize: 30}]}>
-                    Bonus
+                  <Text style={styles.coinValue} thousandSeparator={true}>
+                    {numberWithCommas(props.roundCoins)}
                   </Text>
-                  <Image
-                    source={require('../Assets/Images/coin_peso.png')}
-                    style={styles.coinReward}
-                  />
-                  <Text style={styles.coinValue}>{props.bonusCoins}</Text>
                 </View>
 
                 <View style={styles.modalScoreYS}>
@@ -55,7 +45,7 @@ const scoreboard = props => {
                 </View>
                 <View style={styles.modalScoreNum}>
                   <Text style={[styles.modalScoreText, styles.modalScoreText2]}>
-                    {props.totalScore}
+                    {numberWithCommas(props.totalScore)}
                   </Text>
                 </View>
 
@@ -146,7 +136,6 @@ const styles = StyleSheet.create({
   modalScoreText: {
     fontFamily: 'Voltaire',
     textShadowRadius: hp('0.2%'),
-   
   },
   modalScoreText1: {
     fontSize: 20,
