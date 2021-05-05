@@ -169,10 +169,10 @@ export class DSPlayGame extends Component {
     // Generate a random dragon
     getRandomDragon = () => {
       let randomDragon = Math.floor(Math.random() * 3) + 1;
-    // Play background music
-    bgsound.setVolume(1);
-    bgsound.play();
-    bgsound.setNumberOfLoops(20);
+      // Play background music
+      bgsound.setVolume(1);
+      bgsound.play();
+      bgsound.setNumberOfLoops(20);
       return randomDragon;
     };
 
@@ -349,13 +349,15 @@ export class DSPlayGame extends Component {
             } while (total <= minscore);
             randomScore = dice;
             break;
+
           case 6:
             randomScore = Math.floor(Math.random() * 4) + 97;
 
             let bonus = Math.floor(Math.random() * 100) + 1;
 
             if (bonus >= 0 && bonus <= 50) {
-              this.setState({bonusCoins: 100});
+              this.state.bonusCoins = 100;
+
               setTimeout(() => {
                 this.setState({
                   scoreBoard: true,
@@ -368,7 +370,7 @@ export class DSPlayGame extends Component {
               }, 3200);
               break;
             } else if (bonus >= 51 && bonus <= 75) {
-              this.setState({bonusCoins: 1000});
+              this.state.bonusCoins = 1000;
               setTimeout(() => {
                 this.setState({
                   chestE: false,
@@ -382,7 +384,7 @@ export class DSPlayGame extends Component {
               }, 3300);
               break;
             } else if (bonus >= 76 && bonus <= 90) {
-              this.setState({bonusCoins: 10000});
+              this.state.bonusCoins = 10000;
               setTimeout(() => {
                 this.setState({
                   chestE: false,
@@ -397,7 +399,7 @@ export class DSPlayGame extends Component {
               }, 3300);
               break;
             } else if (bonus >= 91 && bonus <= 97) {
-              this.setState({bonusCoins: 100000});
+              this.state.bonusCoins = 100000;
               setTimeout(() => {
                 this.setState({
                   chestE: false,
@@ -411,7 +413,8 @@ export class DSPlayGame extends Component {
               }, 3300);
               break;
             } else if (bonus >= 98 && bonus <= 100) {
-              this.setState({bonusCoins: 1000000});
+              this.state.bonusCoins = 1000000;
+
               setTimeout(() => {
                 this.setState({
                   chestE: false,
@@ -419,6 +422,7 @@ export class DSPlayGame extends Component {
                 });
               }, 3500);
               setTimeout(() => {
+                console.log(this.state.bonusCoins);
                 bslain.play();
                 bgsound.setNumberOfLoops(-1);
                 bgsound.stop();
@@ -442,7 +446,6 @@ export class DSPlayGame extends Component {
     });
 
     // Animate Explosion and Show score after 1 second
-
     setTimeout(() => {
       switch (attackSequence) {
         case 1:
@@ -568,7 +571,7 @@ export class DSPlayGame extends Component {
             this.state.roundCoins = 50;
             break;
           case 6:
-            this.state.roundCoins = 100;
+            this.state.roundCoins = this.state.bonusCoins;
             break;
         }
 
@@ -591,6 +594,7 @@ export class DSPlayGame extends Component {
             break;
           case 6:
             console.log('bonus chance');
+            console.log(this.state.bonusCoins);
             setTimeout(() => {
               this.setState({
                 dragon: null,
@@ -682,8 +686,6 @@ export class DSPlayGame extends Component {
   };
 
   render() {
-
-
     const rotateDice1 = this.state.dice1anim1.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '3960deg'],

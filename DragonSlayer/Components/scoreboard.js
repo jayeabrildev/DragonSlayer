@@ -108,9 +108,9 @@ const styles = StyleSheet.create({
   },
 
   coinValue: {
-    fontSize: 35,
+    fontSize: 40,
     fontFamily: 'Voltaire',
-    textShadowRadius: hp('0.2%'),
+    textShadowRadius: 20,
     marginLeft: 10,
   },
 
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     flex: 0.3,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    marginTop: 12,
+    marginTop: 10,
   },
   modalScoreText: {
     fontFamily: 'Voltaire',
