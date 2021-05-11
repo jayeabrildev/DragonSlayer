@@ -445,26 +445,6 @@ export class DSPlayGame extends Component {
       sword: require('../Assets/Images/attackbuttonclicked.png'),
     });
 
-    let randomDigit = function (start, range) {
-      let getRandom = Math.floor(Math.random() * range + start);
-      while (getRandom > range) {
-        getRandom = Math.floor(Math.random() * range + start);
-      }
-      return getRandom;
-    };
-
-    switch (attackSequence) {
-      case 1:
-        this.setState({score1: randomDigit(1, 100)});
-        break;
-      case 2:
-        this.setState({score2: randomDigit(2, 100)});
-        break;
-      case 3:
-        this.setState({score3: randomDigit(1, 100)});
-        break;
-    }
-
     // Animate Explosion and Show score after 1 second
     setTimeout(() => {
       switch (attackSequence) {
